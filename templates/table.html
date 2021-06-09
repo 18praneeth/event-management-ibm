@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="table-responsive mt-5">
+<table id="example" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Registered</th>
+                <th>Event Date</th>
+                <th>Event Month</th>
+                <th>Event Year</th>
+                <th>Quarter</th>
+                <th>Event/Activity Type</th>
+                <th>Event/Activity Type</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entry in data %}
+            <tr>
+                <td>{{entry.ambassodor}}</td>
+                <td>{{entry.date | date:"d -- D"}}</td>
+                <td>{{entry.date | date:"M"}}</td>
+                <td>{{entry.date | date:"Y"}}</td>
+                <td>{{entry.Quarter}}</td>
+                <td>{{entry.EventActivityType}}</td>
+                <td>{{entry.TechnologyTracks}}</td>
+            </tr>       
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+{% endblock content %}
+
+

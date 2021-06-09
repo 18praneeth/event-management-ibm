@@ -14,7 +14,7 @@ class CollegeName(models.Model):
 
 class Event(models.Model):
     ambassodor = models.CharField(max_length=500, choices=BOOLEAN_OPTION, blank=True)
-    Date = models.DateTimeField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
     Quarter =  models.IntegerField(default=4, null=True, blank=True)
     EventActivityType = models.CharField(max_length=500, choices=EVENT_OPTION, null=True, blank=True)
     TechnologyTracks = models.CharField(max_length=500, choices=TRACKS_OPTION, null=True, blank=True, verbose_name='Technology Tracks')
