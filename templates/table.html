@@ -13,6 +13,7 @@
                 <th>Event/Activity Type</th>
                 <th>Event/Activity Type</th>
                 <th>Organised By</th>
+                <th>Detail</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +27,7 @@
                 <td>{{entry.event_activity_type}}</td>
                 <td>{{entry.technology_tracks}}</td>
                 <td>{{entry.organised_by}}</td>
+                <td><a href="{% url 'event-detail' event_id=entry.id %}" class="btn btn-outline-info" >Detail</a></td>
             </tr>       
         {% endfor %}
 

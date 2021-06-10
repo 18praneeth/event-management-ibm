@@ -16,6 +16,11 @@ class SME(models.Model):
     sme_notes_id=models.CharField(max_length=100, verbose_name='SME Notes ID')
     sme_manager_notes_id=models.CharField(max_length=100 , verbose_name='SME Manager Notes ID')
 
+
+    class Meta:
+        verbose_name = 'SME'
+        verbose_name_plural = "SME's"
+
     def __str__(self):
         return self.sme_name
 
@@ -45,8 +50,8 @@ class Event(models.Model):
         return self.comments.all().order_by('-id')
 
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return f'{self.event_activity_type} - {self.date}'
 
 
 class Comments(models.Model):
