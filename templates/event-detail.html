@@ -4,11 +4,28 @@
 {{data.id}}
 {{data.ambassodor}}
 {{data.event_activity_type}}
+
+{% for entry in data.get_comments %}
+<p>{{entry.comment}}</p>
+{% endfor %}
 <br>
 <form method="POST">
 {% csrf_token %}
+{{e_form | crispy }}
+<div class="d-grid gap-2 mt-3">
+  <button class="btn btn-primary" type="submit">Submit</button>
+</div>
+
+</form>
+
+
+<form method="POST">
+{% csrf_token %}
 {{form | crispy }}
-<button class="btn btn-primary" type="submit">Submit</button>
+<div class="d-grid gap-2 mt-3">
+  <button class="btn btn-primary" type="submit">Submit</button>
+</div>
+
 </form>
 </div>
 {% endblock content %}
