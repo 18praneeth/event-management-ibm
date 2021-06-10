@@ -7,4 +7,4 @@ def home(request):
         'title': 'Event Home page',
         'data': event
     }
-    return render(request, 'base.html', context=data)
+    return render(request, 'table.html', context=data)
