@@ -12,6 +12,7 @@
                 <th>Quarter</th>
                 <th>Event/Activity Type</th>
                 <th>Event/Activity Type</th>
+                <th>Organised By</th>
             </tr>
         </thead>
         <tbody>
@@ -21,9 +22,10 @@
                 <td>{{entry.date | date:"d -- D"}}</td>
                 <td>{{entry.date | date:"M"}}</td>
                 <td>{{entry.date | date:"Y"}}</td>
-                <td>{{entry.Quarter}}</td>
-                <td>{{entry.EventActivityType}}</td>
-                <td>{{entry.TechnologyTracks}}</td>
+                <td>{{entry.quarter}}</td>
+                <td>{{entry.event_activity_type}}</td>
+                <td>{{entry.technology_tracks}}</td>
+                <td>{{entry.organised_by}}</td>
             </tr>       
         {% endfor %}
 
