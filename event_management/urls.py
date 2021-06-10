@@ -6,8 +6,8 @@ from event_management import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('user.urls')),
-    path('event/', include('event.urls'))
+    path('user/', include('user.urls')),
+    path('', include('event.urls'))
 ]
 
 
