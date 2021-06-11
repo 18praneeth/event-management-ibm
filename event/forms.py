@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import models
 from django.db.models.base import Model
 from django.forms import fields
-from .models import Comments, Event, SME
+from .models import CollegeName, Comments, Event, SME
 from django.utils.translation import gettext_lazy
 
 
@@ -28,3 +28,8 @@ class SMEForm(forms.ModelForm):
         help_texts = {
             'sme_name': gettext_lazy('Please enter SME Name')
         }
+
+class CollegeForm(forms.ModelForm):
+    class Meta:
+        model=CollegeName
+        fields='__all__'
