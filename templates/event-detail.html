@@ -1,33 +1,232 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}{% block content %}
-<div class="">
-{{data.id}}
-{{data.ambassodor}}
-{{data.event_activity_type}}
+{% load crispy_forms_tags %}
 
-{% for entry in data.get_comments %}
-<p>{{entry.comment}}</p>
-{% endfor %}
-<br>
-<form method="POST">
-{% csrf_token %}
-{{e_form | crispy }}
-<div class="d-grid gap-2 mt-3">
-  <button class="btn btn-primary" type="submit">Submit</button>
+{% block content %}
+<section>
+
+<!-- Comment modal -->
+<button type="button" class="btn btn-primary mb-3" data-mdb-toggle="modal" data-mdb-target="#commentModal">
+  Add a comment
+</button>
+
+<!-- event modal -->
+<button type="button" class="btn btn-primary mb-3" data-mdb-toggle="modal" data-mdb-target="#eventModal">
+  Edit the Event
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="commentModal"
+  data-mdb-backdrop="static"
+  data-mdb-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Add a comment</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form method="POST">
+      <div class="modal-body">
+          {% csrf_token %}
+          {{form | crispy }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+          Close
+        </button>
+        <button type="submit" class="btn btn-primary">Post the Comment</button>
+      </div>
+      </form>
+    </div>
+  </div>
 </div>
 
-</form>
 
-
-<form method="POST">
-{% csrf_token %}
-{{form | crispy }}
-<div class="d-grid gap-2 mt-3">
-  <button class="btn btn-primary" type="submit">Submit</button>
+<!-- Event Modal -->
+<div
+  class="modal fade"
+  id="eventModal"
+  data-mdb-backdrop="static"
+  data-mdb-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Edit the Event</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form method="POST">
+      <div class="modal-body">
+          {% csrf_token %}
+          {{e_form | crispy }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+          Close
+        </button>
+        <button type="submit" class="btn btn-primary">Save the Changes</button>
+      </div>
+      </form>
+    </div>
+  </div>
 </div>
 
-</form>
-</div>
+<ol class="list-group ">
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Registered Academic Ambassador (Y/N)</div>
+      {{data.ambassodor}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Event Date</div>
+      {{data.date | date:"d"}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Event Month</div>
+      {{data.date | date:"M"}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Event Year</div>
+      {{data.date | date:"Y"}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Quarter</div>
+      {{data.quarter}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Event/Activity Type</div>
+      {{data.event_activity_type}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Technology Track</div>
+      {{data.technology_tracks}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Event/Activity Mode</div>
+      {{data.event_activity_mode}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Organized By</div>
+      {{data.organised_by}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Session Topic Name</div>
+      {{data.session_topic_name}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Session Duration in hours (1 - 8)</div>
+      {{data.session_duration}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">No. of attendees</div>
+      {{data.number_of_attendees}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Institution Name</div>
+      {{data.institution_name.college_name}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Institution City</div>
+      {{data.institution_name.college_city}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Subject Matter Expert (SME) Name</div>
+      {{data.sme_details.sme_name}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">SME Notes ID</div>
+      {{data.sme_details.sme_notes_id}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">SME Manager Notes ID</div>
+      {{data.sme_details.sme_manager_notes_id}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Link of Academic Initiative </div>
+      {{data.link}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Status </div>
+      {{data.status}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">College Category</div>
+      {{data.college_category}}
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Comments</div>
+      <ul class="list-group">
+      {% for entry in data.get_comments %}
+        <li class="list-group-item">
+          {{entry.comment}}
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+  </li>
+</ol>
+
+</section>
+
+
 {% endblock content %}
 
 
