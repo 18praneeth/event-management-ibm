@@ -36,6 +36,31 @@ def event_detail(request, event_id):
     return render(request, 'event-detail.html', context=data)
 
 
+def sme_details(request, sme_id):
+    form_event = EventForm(instance=single_sme)
+    if request.POST:
+        form = CommentForm(request.POST)
+        form_event = EventForm(request.POST, instance=single_sme)
+        if form.is_valid():
+
+            form.instance.user = request.user
+            form.instance.event = single_sme
+            form.save()
+            return redirect('home-page')
+        if form_event.is_valid():
+            form_event.save()
+            return redirect('home-page')
+
+    form = CommentForm()
+    
+    data = {
+        'data': single_sme,
+        'form': form,
+        'e_form': form_event
+    }
+    return render(request, 'sme-detail.html', context=data)
+
+
 def form_demo(request):
     form  = EventForm()
     data = {
