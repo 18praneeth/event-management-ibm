@@ -5,13 +5,11 @@
 <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>
-                <th>Registered</th>
+                
                 <th>Event Date</th>
-                <th>Event Month</th>
-                <th>Event Year</th>
                 <th>Quarter</th>
                 <th>Event/Activity Type</th>
-                <th>Event/Activity Type</th>
+                <th>Technology Track</th>
                 <th>Organised By</th>
                 <th>Detail</th>
             </tr>
@@ -19,10 +17,8 @@
         <tbody>
         {% for entry in data %}
             <tr>
-                <td>{{entry.ambassodor}}</td>
-                <td>{{entry.date | date:"d"}}</td>
-                <td>{{entry.date | date:"M"}}</td>
-                <td>{{entry.date | date:"Y"}}</td>
+               
+                <td>{{entry.date | date:"d"}}-{{entry.date | date:"M"}}-{{entry.date | date:"Y"}}</td>
                 <td>{{entry.quarter}}</td>
                 <td>{{entry.event_activity_type}}</td>
                 <td>{{entry.technology_tracks}}</td>

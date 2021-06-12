@@ -5,25 +5,26 @@ from .choice import *
 
 
 class CollegeName(models.Model):
-    college_name = models.CharField(max_length=500)
-    college_city = models.CharField(max_length=500)
-
+    college_name = models.CharField(max_length=500,null=True, blank=True)
+    college_city = models.CharField(max_length=500,null=True, blank=True)
+    college_state=models.CharField(max_length=500, null=True, blank=True)
+    college_region=models.CharField(max_length=500, choices=REGION_OPTION, null=True, blank=True)
     def __str__(self):
         return self.college_name
 
 
-class SME(models.Model):
+"""class SME(models.Model):
     sme_name=models.CharField(max_length=100)
     sme_notes_id=models.CharField(max_length=100, verbose_name='SME Notes ID')
     sme_manager_notes_id=models.CharField(max_length=100 , verbose_name='SME Manager Notes ID')
 
 
     class Meta:
-        verbose_name = 'SME'
-        verbose_name_plural = "SME's"
+           verbose_name = 'SME'
+           verbose_name_plural = "SME's"
 
     def __str__(self):
-        return self.sme_name
+        return self.sme_name"""
 
 
 class Event(models.Model):
@@ -38,7 +39,9 @@ class Event(models.Model):
     session_duration = models.CharField(max_length=500, choices=SESSION_OPTION, null=True, blank=True, help_text='Session Duration in hours.')
     number_of_attendees = models.IntegerField(default=0)
     institution_name = models.ForeignKey(CollegeName, blank=True, null=True, on_delete=models.SET_NULL)
-    sme_details= models.ForeignKey(SME, blank=True, null=True, on_delete=models.SET_NULL)
+    sme_name=models.CharField(max_length=100,null=True, blank=True)
+    sme_notes_id=models.CharField(max_length=100, verbose_name='SME Notes ID',null=True, blank=True)
+    sme_manager_notes_id=models.CharField(max_length=100 , verbose_name='SME Manager Notes ID',null=True, blank=True)
     sme_bu = models.CharField(max_length=500, choices=BU_OPTION, null=True, blank=True,verbose_name='SME BU')
     ur_spoc = models.CharField(max_length=500, choices=URSPOC_OPTION, null=True, blank=True,verbose_name='UR SPOC')
     link = models.URLField(null=True, blank=True, help_text='Link of Academic Initiative Course/platform to be used from  https://ibm.biz/academic')

@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from .models import Event, SME
-from .forms import CollegeForm, CommentForm, EventForm, SMEForm
+from .models import Event
+from .forms import CollegeForm, CommentForm, EventForm
 
 def home(request):
     events = Event.objects.all()
@@ -36,7 +36,7 @@ def event_detail(request, event_id):
     return render(request, 'event-detail.html', context=data)
 
 
-def create_sme(request):
+"""def create_sme(request):
     s_form = SMEForm()
     
     if request.POST:
@@ -45,7 +45,7 @@ def create_sme(request):
             s_form.save()
             return redirect('sme')
 
-    return render(request, 'sme-detail.html', context={'s_form': s_form})
+    return render(request, 'sme-detail.html', context={'s_form': s_form})"""
 
 
 def create_college(request):
