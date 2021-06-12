@@ -1,9 +1,6 @@
 from django import forms
-from django.contrib.auth import models
-from django.db.models.base import Model
 from django.forms import fields
 from .models import CollegeName, Comments, Event
-from django.utils.translation import gettext_lazy
 
 
 class CommentForm(forms.ModelForm):
@@ -12,22 +9,19 @@ class CommentForm(forms.ModelForm):
         fields = ['comment']
 
 
-class EventForm(forms.ModelForm):
+class GeneralEventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = '__all__'
+        fields = ['date', 'quarter', 'event_activity_type', 'event_activity_mode', 'technology_tracks', 'organised_by']
 
 
-"""class SMEForm(forms.ModelForm):
+class SMEEventForm(forms.ModelForm):
     class Meta:
-        model = SME
-        fields = ['sme_name', 'sme_notes_id', 'sme_manager_notes_id']
-        labels = {
-            'sme_name': gettext_lazy('SME Name')
-        }
-        help_texts = {
-            'sme_name': gettext_lazy('Please enter SME Name')
-        }"""
+        model = Event
+        fields = ['sme_name', 'ambassodor', 'sme_notes_id', 'sme_manager_notes_id', 'sme_bu']
+
+
+
 
 class CollegeForm(forms.ModelForm):
     class Meta:
