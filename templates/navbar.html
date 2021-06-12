@@ -21,15 +21,9 @@
            aria-current="true"
            >
           <i class="fas fa-tachometer-alt fa-fw me-3"></i
-            ><span>Add a new College</span>
+            ><span>Manage College</span>
         </a>
-        <a
-           href="{% url 'sme' %}"
-           class="list-group-item list-group-item-action py-2 ripple"
-           >
-          <i class="fas fa-chart-area fa-fw me-3"></i
-            ><span>Create new SME</span>
-        </a>
+       
         {% if request.user.is_superuser %}
         <a
            href="/admin"
