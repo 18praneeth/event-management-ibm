@@ -21,10 +21,10 @@ def event_detail(request, event_id):
             c_form.instance.user = request.user
             c_form.instance.event = single_event
             c_form.save()
-            return redirect('home-page')
+            return redirect('event')
         if e_form.is_valid():
             e_form.save()
-            return redirect('home-page')
+            return redirect('event')
 
     c_form = CommentForm()
     
