@@ -18,6 +18,13 @@ EVENT_OPTION=(
 )
 
 
+REGION_OPTION=(
+    ('North','North'),
+    ('South','South'),
+    ('East','East'),
+    ('West','West')
+)
+
 TRACKS_OPTION=(
     ('Across Technologies','Across Technologies'),
     ('Agile/DevOps','Agile/DevOps'),
