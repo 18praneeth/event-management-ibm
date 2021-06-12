@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<section>
+
+  <form method='POST'>
+    {% csrf_token %}
+    {{c_form | crispy}}
+    <br>
+    <button class='btn btn-secondary' type='submit'>Create a new College</button>
+  </form>
+
+</section>
+
+
+{% endblock content %}
+
+
