@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import fields
 from .models import CollegeName, Comments, Event
+from django.utils.translation import gettext as _
 
 
 class CommentForm(forms.ModelForm):
@@ -19,6 +20,10 @@ class SMEEventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ['sme_name', 'ambassodor', 'sme_notes_id', 'sme_manager_notes_id', 'sme_bu']
+
+        labels = {
+            'sme_name': _('SME Name')
+        }
 
 
 class CollegeForm(forms.ModelForm):

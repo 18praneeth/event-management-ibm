@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Event
 from .forms import CollegeForm, CommentForm, GeneralEventForm, SMEEventForm
+from django.contrib.auth.decorators import login_required
+
 
 def home(request):
     if request.user.is_superuser:
@@ -14,6 +16,7 @@ def home(request):
     return render(request, 'table.html', context=data)
 
 
+@login_required
 def event_detail(request, event_id):
     single_event = get_object_or_404(Event, id=event_id)
     if request.POST:
@@ -39,6 +42,13 @@ def event_detail(request, event_id):
         'form': c_form,
     }
     return render(request, 'event-detail.html', context=data)
+
+
+@login_required
+def event_delete(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    event.delete()
+    return redirect('event')
 
 
 def create_event(request):
