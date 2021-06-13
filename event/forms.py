@@ -21,8 +21,6 @@ class SMEEventForm(forms.ModelForm):
         fields = ['sme_name', 'ambassodor', 'sme_notes_id', 'sme_manager_notes_id', 'sme_bu']
 
 
-
-
 class CollegeForm(forms.ModelForm):
     class Meta:
         model=CollegeName
