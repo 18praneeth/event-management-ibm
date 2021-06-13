@@ -243,6 +243,7 @@
     <button type="button" class="btn btn-danger btn-block" data-mdb-toggle="modal" data-mdb-target="#DeleteModal">Delete this event</button>
   </div>
   <div class="col-md-3 col-sm-6">
+    <a class="btn btn-success btn-block" href="{% url 'event-update' event_id=data.id %}">Update this event</a>
   </div>
 </div>
 

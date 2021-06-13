@@ -30,3 +30,9 @@ class CollegeForm(forms.ModelForm):
     class Meta:
         model=CollegeName
         fields='__all__'
+
+
+class EventUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = '__all__'

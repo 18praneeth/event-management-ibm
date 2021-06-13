@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Event
-from .forms import CollegeForm, CommentForm, GeneralEventForm, SMEEventForm
+from .forms import CollegeForm, CommentForm, GeneralEventForm, SMEEventForm, EventUpdateForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -49,6 +49,24 @@ def event_delete(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     event.delete()
     return redirect('event')
+
+
+@login_required
+def event_update(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    e_form = EventUpdateForm(instance=event)
+
+    if request.POST:
+        e_form = EventUpdateForm(request.POST, instance=event)
+        if e_form.is_valid():
+            e_form.save()
+            return redirect('event-detail', event_id=event_id)
+    
+    context = {
+        'e_form': e_form,
+    }
+    return render(request, 'event-edit.html', context)
+
 
 
 def create_event(request):
