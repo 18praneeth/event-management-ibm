@@ -35,7 +35,9 @@ class Event(models.Model):
     status = models.CharField(max_length=500, choices=STATUS_OPTION, null=True, blank=True)
     college_category = models.CharField(max_length=500, choices=COLLEGE_OPTION, null=True, blank=True)
     publish = models.BooleanField(default=False, help_text='Tick the option if you want to publish the event')
-    accepted_users = models.ManyToManyField(User, blank=True, help_text='Accepted Users')
+    accepted_users = models.ManyToManyField(User, help_text='Accepted Users', related_name='accepted_user')
+    rejected_users = models.ManyToManyField(User, help_text='Rejected User', related_name='rejected_user')
+    assigned_user = models.ForeignKey(User, null=True, blank=True, help_text='Event Assignee', on_delete=models.SET_NULL)
 
 
     @property

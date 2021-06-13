@@ -3,7 +3,10 @@ from .models import Event
 from .forms import CollegeForm, CommentForm, GeneralEventForm, SMEEventForm
 
 def home(request):
-    events = Event.objects.all()
+    if request.user.is_superuser:
+        events = Event.objects.all()
+    else:
+        events = Event.objects.filter(publish=True)
     data = {
         'title': 'Event Home page',
         'data': events
@@ -14,6 +17,13 @@ def home(request):
 def event_detail(request, event_id):
     single_event = get_object_or_404(Event, id=event_id)
     if request.POST:
+        val = request.POST.get('hidden_option')
+        if val == "1":
+            single_event.publish = True
+            single_event.save()
+        elif val == "0":
+            single_event.publish = False
+            single_event.save()
         c_form = CommentForm(request.POST)
         if c_form.is_valid():
             c_form.instance.user = request.user

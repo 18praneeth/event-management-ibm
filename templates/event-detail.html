@@ -50,141 +50,172 @@
 </div>
 
 
+<div class="row">
+  <div class="col-lg-6">
+    <ol class="list-group ">
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Registered Academic Ambassador (Y/N)</div>
+          {{data.ambassodor}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Event Date</div>
+          {{data.date | date:"d"}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Event Month</div>
+          {{data.date | date:"M"}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Event Year</div>
+          {{data.date | date:"Y"}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Quarter</div>
+          {{data.quarter}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Event/Activity Type</div>
+          {{data.event_activity_type}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Technology Track</div>
+          {{data.technology_tracks}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Event/Activity Mode</div>
+          {{data.event_activity_mode}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Organized By</div>
+          {{data.organised_by}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Comments</div>
+          <ul class="list-group">
+          {% for entry in data.get_comments %}
+            <li class="list-group-item">
+              {{entry.comment}}
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <div class="col-lg-6">
+    <ol class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Session Topic Name</div>
+          {{data.session_topic_name}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Session Duration in hours (1 - 8)</div>
+          {{data.session_duration}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">No. of attendees</div>
+          {{data.number_of_attendees}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Institution Name</div>
+          {{data.institution_name.college_name}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Institution City</div>
+          {{data.institution_name.college_city}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Subject Matter Expert (SME) Name</div>
+          {{data.sme_details.sme_name}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">SME Notes ID</div>
+          {{data.sme_details.sme_notes_id}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">SME Manager Notes ID</div>
+          {{data.sme_details.sme_manager_notes_id}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Link of Academic Initiative </div>
+          {{data.link}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Status </div>
+          {{data.status}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">College Category</div>
+          {{data.college_category}}
+        </div>
+      </li>
+    </ol>
+  </div>
+</div>
 
-<ol class="list-group ">
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Registered Academic Ambassador (Y/N)</div>
-      {{data.ambassodor}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Event Date</div>
-      {{data.date | date:"d"}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Event Month</div>
-      {{data.date | date:"M"}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Event Year</div>
-      {{data.date | date:"Y"}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Quarter</div>
-      {{data.quarter}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Event/Activity Type</div>
-      {{data.event_activity_type}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Technology Track</div>
-      {{data.technology_tracks}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Event/Activity Mode</div>
-      {{data.event_activity_mode}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Organized By</div>
-      {{data.organised_by}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Session Topic Name</div>
-      {{data.session_topic_name}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Session Duration in hours (1 - 8)</div>
-      {{data.session_duration}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">No. of attendees</div>
-      {{data.number_of_attendees}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Institution Name</div>
-      {{data.institution_name.college_name}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Institution City</div>
-      {{data.institution_name.college_city}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Subject Matter Expert (SME) Name</div>
-      {{data.sme_details.sme_name}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">SME Notes ID</div>
-      {{data.sme_details.sme_notes_id}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">SME Manager Notes ID</div>
-      {{data.sme_details.sme_manager_notes_id}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Link of Academic Initiative </div>
-      {{data.link}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Status </div>
-      {{data.status}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">College Category</div>
-      {{data.college_category}}
-    </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Comments</div>
-      <ul class="list-group">
-      {% for entry in data.get_comments %}
-        <li class="list-group-item">
-          {{entry.comment}}
-        </li>
-      {% endfor %}
-      </ul>
-    </div>
-  </li>
-</ol>
+  {% if data.publish %}
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="hidden_option" value="0">
+        <button type="submit"
+                class="btn btn-info">
+                  Unpublish the Event
+        </button>
+    </form>
+  {% endif %}
+
+
+  {% if not data.publish %}
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="hidden_option" value="1">
+        <button type="submit"
+                class="btn btn-info">
+                  Publish the Event
+        </button>
+    </form>
+  {% endif %}
+
 
 </section>
 
