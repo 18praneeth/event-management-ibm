@@ -2,10 +2,18 @@ from django.shortcuts import redirect, render, get_object_or_404
 from .models import Event
 from .forms import CollegeForm, CommentForm, GeneralEventForm, SMEEventForm, EventUpdateForm
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 
 
 @login_required
 def home(request):
+    send_mail(
+            'Subject here',
+            'Here is the message.',
+            'from@example.com',
+            ['to@example.com'],
+            fail_silently=False,
+        )
     if request.user.is_superuser:
         events = Event.objects.all()
     else:
