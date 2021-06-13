@@ -34,13 +34,14 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'user',
     'event',
+    'djangocms_admin_style',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms'
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'event'

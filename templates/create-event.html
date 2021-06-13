@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<section>
+
+  <form method='POST'>
+    {% csrf_token %}
+    <div class='row'>
+        <div class='col-6'>
+            {{g_form | crispy}}
+        </div>
+        <div class='col-6'>
+            {{s_form | crispy}}
+        </div>
+    </div>
+
+    <button class='btn btn-secondary btn-block' type='sumbit'>Create a Event</button>
+
+  </form>
+
+</section>
+
+
+{% endblock content %}
+
+
