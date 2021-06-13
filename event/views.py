@@ -4,6 +4,7 @@ from .forms import CollegeForm, CommentForm, GeneralEventForm, SMEEventForm, Eve
 from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def home(request):
     if request.user.is_superuser:
         events = Event.objects.all()
