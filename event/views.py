@@ -1,8 +1,9 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Event
-from .forms import CollegeForm, CommentForm, GeneralEventForm,Eventform, SMEEventForm, EventUpdateForm
+from .forms import CollegeForm, CommentForm, EventUpdateForm, EventCreateForm
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from django.contrib import messages
 
 
 @login_required
@@ -77,15 +78,12 @@ def event_update(request, event_id):
     return render(request, 'event-edit.html', context)
 
 
-
+@login_required
 def create_event(request):
-    sme_form = SMEEventForm()
-    g_form = GeneralEventForm()
-    n_form=Eventform()
+    form = EventCreateForm()
+    
     context = {
-        's_form': sme_form,
-        'g_form': g_form,
-        'n_form': Eventform,
+        'form': form,
     }
     return render(request, 'create-event.html', context=context)
 
@@ -106,3 +104,30 @@ def create_college(request):
             c_form.save()
             return redirect('college')
     return render(request,'college-details.html',context={'c_form':c_form})
+
+
+
+@login_required
+def signup_event(request, id):
+    event = get_object_or_404(Event, id=id)
+    event.accepted_users.add(request.user)
+    messages.success(request, 'You have successfully signed up for the event.')
+    return redirect('event')
+
+
+
+@login_required
+def reject_event(request, id):
+    event = get_object_or_404(Event, id=id)
+    event.rejected_users.add(request.user)
+    messages.error(request, 'You have Rejected the Event')
+    return redirect('event')  
+
+
+@login_required
+def mail_signup(request, id):
+    event = get_object_or_404(Event, id=id)
+    context = {
+        'event': event
+    }
+    return render(request, 'mail-signup.html', context)
