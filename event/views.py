@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Event
-from .forms import CollegeForm, CommentForm, GeneralEventForm, SMEEventForm, EventUpdateForm
+from .forms import CollegeForm, CommentForm, GeneralEventForm,Eventform, SMEEventForm, EventUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 
@@ -81,13 +81,21 @@ def event_update(request, event_id):
 def create_event(request):
     sme_form = SMEEventForm()
     g_form = GeneralEventForm()
-
+    n_form=Eventform()
     context = {
         's_form': sme_form,
-        'g_form': g_form
+        'g_form': g_form,
+        'n_form': Eventform,
     }
     return render(request, 'create-event.html', context=context)
 
+'''def create_event2(request):
+    n_form=Eventform()
+
+    context={
+        'n_form': Eventform,
+            }
+    return render(request,'create-event.html',context=context)'''
 
 def create_college(request):
     c_form = CollegeForm()

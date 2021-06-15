@@ -15,6 +15,11 @@ class GeneralEventForm(forms.ModelForm):
         model = Event
         fields = ['date', 'quarter', 'event_activity_type', 'event_activity_mode', 'technology_tracks', 'organised_by']
 
+class Eventform(forms.ModelForm):
+    class Meta:
+        model=Event
+        fields=['session_duration','number_of_attendees','link','status']
+
 
 class SMEEventForm(forms.ModelForm):
     class Meta:
