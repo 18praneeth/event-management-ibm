@@ -1,0 +1,35 @@
+{% extends 'base_login.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <main id="main" data-aos="fade-in">
+
+    <section>
+    <div class="container">
+
+    <div class="row mt-5 pt-5">
+    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
+          <h2>{{event.session_topic_name}}</h2>
+
+          <div class="row">
+            <div class="col-6">
+                {% if not request.user in event.accepted_users.all %}
+                    <a class="btn btn-success" href="{% url 'signup-event' id=event.id %}">Sign up for the event</a>
+                {% endif %}
+            </div>
+            <div class="col-6">
+                {% if not request.user in event.rejected_users.all %}
+                    <a class="btn btn-danger" href="{% url 'reject-event' id=event.id %}">Not interested</a>
+                {% endif %}
+            </div>
+          </div>
+  </div>
+  </div>
+
+      </div>
+    </section><!-- End Trainers Section -->
+
+  </main><!-- End #main -->
+{% endblock content %}
