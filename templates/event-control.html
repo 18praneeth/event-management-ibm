@@ -33,7 +33,7 @@
   {% csrf_token %}
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Assign the Event</label>
-                <select class="form-control" id="exampleFormControlSelect1" name="assign">
+                <select class="form-control" id="exampleFormControlSelect1" name="assign" required>
                 {% for users in event.accepted_users.all %}
                     <option>{{users.username}}</option>
                 {% endfor %}
