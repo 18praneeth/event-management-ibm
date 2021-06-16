@@ -2,6 +2,10 @@
 
 {% block content %}
 <div class="table-responsive mt-5">
+{% if request.user.is_superuser %}
+        <a class="btn btn-danger" href="{% url 'create-event'  %}">Manage event</a>
+{% endif %}
+<br>
 <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>

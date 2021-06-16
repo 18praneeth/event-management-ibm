@@ -87,6 +87,13 @@ def create_event(request):
     }
     return render(request, 'create-event.html', context=context)
 
+'''def create_event2(request):
+    n_form=Eventform()
+
+    context={
+        'n_form': Eventform,
+            }
+    return render(request,'create-event.html',context=context)'''
 
 def create_college(request):
     c_form = CollegeForm()
