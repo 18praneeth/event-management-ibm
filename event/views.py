@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Event
-from .forms import CollegeForm, CommentForm, EventUpdateForm, EventCreateForm
+from .forms import CollegeForm, CommentForm, EventUpdateForm, EventCreateForm, EventControlForm
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib import messages
@@ -41,6 +41,7 @@ def event_detail(request, event_id):
         if c_form.is_valid():
             c_form.instance.user = request.user
             c_form.instance.event = single_event
+            messages.success(request, 'Your comment is posted')
             c_form.save()
             return redirect('event')
 
@@ -81,20 +82,20 @@ def event_update(request, event_id):
 @login_required
 def create_event(request):
     form = EventCreateForm()
+    if request.POST:
+        form = EventCreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your event is Created')
+            return redirect('event')
     
     context = {
         'form': form,
     }
     return render(request, 'create-event.html', context=context)
 
-'''def create_event2(request):
-    n_form=Eventform()
 
-    context={
-        'n_form': Eventform,
-            }
-    return render(request,'create-event.html',context=context)'''
-
+@login_required
 def create_college(request):
     c_form = CollegeForm()
 
@@ -131,3 +132,22 @@ def mail_signup(request, id):
         'event': event
     }
     return render(request, 'mail-signup.html', context)
+
+
+
+@login_required
+def event_control(request, id):
+    event = get_object_or_404(Event, id=id)
+    form = EventControlForm(instance=event)
+    if request.POST:
+        form = EventControlForm(request.POST, instance=event)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'User has been assigned for the task')
+            return redirect('event')
+
+    context = {
+        'event': event,
+        'form': form
+    }
+    return render(request, 'event-control.html', context)

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters%}
+{% load crispy_forms_tags %} 
+
+{% block content %}
+<section>
+<div class="row">
+    <div class="col-md-6 col-12">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header"><h6>Accepted Users</h6></div>
+            <ul class="list-group list-group-flush">
+            {% for users in event.accepted_users.all %}
+                <li class="list-group-item">{{user.username}}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-6 col-12">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header"><h6>Rejected Users</h6></div>
+            <ul class="list-group list-group-flush">
+            {% for users in event.rejected_users.all %}
+                <li class="list-group-item">{{user.username}}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+  <form method='POST'>
+    {% csrf_token %}
+    <div class='row'>
+        <div class='col-lg-8 offset-lg-2'>
+            {{form | crispy}}
+          <button class='btn btn-secondary btn-block mt-3 mb-3' type='sumbit'>Assign the Event</button>
+        </div>
+    </div>
+  </form>
+
+</section>
+
+
+{% endblock content %}
+
+

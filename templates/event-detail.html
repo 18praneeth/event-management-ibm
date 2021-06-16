@@ -305,6 +305,11 @@
     <a class="btn btn-success btn-block" href="{% url 'event-update' event_id=data.id %}">Update this event</a>
   {% endif %}
   </div>
+  <div class="col-md-3 col-sm-6">
+  {% if user.is_superuser %}
+    <a class="btn btn-success btn-block" href="{% url 'event-assign' id=data.id %}">Assign this event</a>
+  {% endif %}
+  </div>
 </div>
 
 
