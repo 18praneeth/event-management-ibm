@@ -10,20 +10,10 @@ class CommentForm(forms.ModelForm):
         fields = ['comment']
 
 
-class GeneralEventForm(forms.ModelForm):
+class EventCreateForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['date', 'quarter', 'event_activity_type', 'event_activity_mode', 'technology_tracks', 'organised_by']
-
-
-class SMEEventForm(forms.ModelForm):
-    class Meta:
-        model = Event
-        fields = ['sme_name', 'ambassodor', 'sme_notes_id', 'sme_manager_notes_id', 'sme_bu']
-
-        labels = {
-            'sme_name': _('SME Name')
-        }
+        exclude = ['publish', 'accepted_users', 'rejected_users', 'assigned_user']
 
 
 class CollegeForm(forms.ModelForm):
