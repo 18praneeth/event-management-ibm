@@ -60,6 +60,7 @@ def event_detail(request, event_id):
 def event_delete(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     event.delete()
+
     return redirect('event')
 
 
