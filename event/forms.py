@@ -27,8 +27,3 @@ class EventUpdateForm(forms.ModelForm):
         model = Event
         fields = '__all__'
 
-
-class EventControlForm(forms.ModelForm):
-    class Meta:
-        model = Event
-        fields = ['assigned_user']
