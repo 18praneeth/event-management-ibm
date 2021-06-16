@@ -1,5 +1,7 @@
+from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth import logout
+from django.contrib import messages
 
 def home(request):
     data = {
@@ -9,5 +11,6 @@ def home(request):
 
 
 def user_logout(request):
+    messages.info(request, 'You have logged out!!')
     logout(request)
     return redirect('event')

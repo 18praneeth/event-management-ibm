@@ -26,3 +26,4 @@ class EventUpdateForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = '__all__'
+
