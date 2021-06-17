@@ -60,7 +60,7 @@ def event_detail(request, event_id):
 def event_delete(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     event.delete()
-
+    messages.error(request,'The event is deleted')
     return redirect('event')
 
 
@@ -73,6 +73,7 @@ def event_update(request, event_id):
         e_form = EventUpdateForm(request.POST, instance=event)
         if e_form.is_valid():
             e_form.save()
+            messages.success(request,'The event is updated')
             return redirect('event-detail', event_id=event_id)
     
     context = {
@@ -105,6 +106,7 @@ def create_college(request):
         c_form = CollegeForm(request.POST)
         if c_form.is_valid():
             c_form.save()
+            messages.success(request,'The college is created')
             return redirect('college')
     return render(request,'college-details.html',context={'c_form':c_form})
 
@@ -130,6 +132,7 @@ def reject_event(request, id):
 @login_required
 def mail_signup(request, id):
     event = get_object_or_404(Event, id=id)
+    messages.success(request,'You have signed up to your email')
     context = {
         'event': event
     }
