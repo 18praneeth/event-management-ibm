@@ -38,6 +38,7 @@ class Event(models.Model):
     accepted_users = models.ManyToManyField(User, help_text='Accepted Users', related_name='accepted_user', blank=True)
     rejected_users = models.ManyToManyField(User, help_text='Rejected User', related_name='rejected_user', blank=True)
     assigned_user = models.ForeignKey(User, null=True, blank=True, help_text='Event Assignee', on_delete=models.SET_NULL)
+    connected_event = models.ForeignKey(to='Event', null=True, blank=True, help_text='Select the connected event, if you want to make thread of events', on_delete=models.SET_NULL)
 
 
     @property

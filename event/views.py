@@ -5,6 +5,7 @@ from .forms import CollegeForm, CommentForm, EventUpdateForm, EventCreateForm
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib import messages
+from .utils import send_slack_message
 
 
 @login_required
@@ -88,7 +89,8 @@ def create_event(request):
     if request.POST:
         form = EventCreateForm(request.POST)
         if form.is_valid():
-            form.save()
+            event = form.save()
+            send_slack_message(event)
             messages.success(request, 'Your event is Created')
             return redirect('event')
     
