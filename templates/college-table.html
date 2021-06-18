@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="table-responsive mt-5">
+<br>
+<table id="example" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                
+                <th>College Name</th>
+                <th> City</th>
+                <th>State</th>
+                <th>Region</th>
+                <th>College Category</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for entry in data %}
+            <tr>
+               
+                
+                <td>{{entry.college_name}}</td>
+                <td>{{entry.college_city}}</td>
+                <td>{{entry.college_state}}</td>
+                <td>{{entry.college_region}}</td>
+                <td>{{entry.college_category}}</td>
+           
+            </tr>       
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+{% endblock content %}
+
+
