@@ -72,6 +72,7 @@ def event_detail(request, event_id):
         if val == "1":
             single_event.publish = True
             single_event.save()
+            send_slack_message(single_event)
         elif val == "0":
             single_event.publish = False
             single_event.save()
@@ -127,7 +128,6 @@ def create_event(request):
         form = EventCreateForm(request.POST)
         if form.is_valid():
             event = form.save()
-            send_slack_message(event)
             messages.success(request, 'Your event is Created')
             return redirect('event')
     

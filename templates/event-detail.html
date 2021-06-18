@@ -19,7 +19,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Add a comment</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Add comment</h5>
         <button
           type="button"
           class="btn-close"
@@ -36,7 +36,7 @@
         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
           Close
         </button>
-        <button type="submit" class="btn btn-primary">Post the Comment</button>
+        <button type="submit" class="btn btn-primary">Post Comment</button>
       </div>
       </form>
     </div>
@@ -52,7 +52,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete this Event</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Delete Event</h5>
         <button
           type="button"
           class="btn-close"
@@ -84,7 +84,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Signup for this event</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Signup for the event</h5>
         <button
           type="button"
           class="btn-close"
@@ -97,7 +97,7 @@
         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
           Close
         </button>
-        <a class="btn btn-danger" href="{% url 'signup-event' id=data.id %}">Sign up for the event</a>
+        <a class="btn btn-danger" href="{% url 'signup-event' id=data.id %}">Signup for the event</a>
       </div>
     </div>
   </div>
@@ -272,7 +272,7 @@
               <input type="hidden" name="hidden_option" value="0">
               <button type="submit"
                       class="btn btn-info btn-block">
-                        Unpublish the Event
+                        Unpublish Event
               </button>
           </form>
         {% endif %}
@@ -284,7 +284,7 @@
               <input type="hidden" name="hidden_option" value="1">
               <button type="submit"
                       class="btn btn-info btn-block">
-                        Publish the Event
+                        Publish  Event
               </button>
           </form>
         {% endif %}
@@ -297,17 +297,17 @@
   </div>
   <div class="col mb-3">
   {% if user.is_superuser %}
-    <button type="button" class="btn btn-danger btn-block" data-mdb-toggle="modal" data-mdb-target="#DeleteModal">Delete this event</button>
+    <button type="button" class="btn btn-danger btn-block" data-mdb-toggle="modal" data-mdb-target="#DeleteModal">Delete event</button>
   {% endif %}
   </div>
   <div class="col mb-3">
   {% if user.is_superuser %}
-    <a class="btn btn-success btn-block" href="{% url 'event-update' event_id=data.id %}">Update this event</a>
+    <a class="btn btn-success btn-block" href="{% url 'event-update' event_id=data.id %}">Update event</a>
   {% endif %}
   </div>
   <div class="col mb-3">
   {% if user.is_superuser %}
-    <a class="btn btn-success btn-block" href="{% url 'event-assign' id=data.id %}">Assign this event</a>
+    <a class="btn btn-success btn-block" href="{% url 'event-assign' id=data.id %}">Assign event</a>
   {% endif %}
   </div>
 </div>
