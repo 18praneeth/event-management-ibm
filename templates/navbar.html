@@ -34,8 +34,13 @@
               <a class="dropdown-item" href="{% url 'college-details' %}">College Edit</a>
             </li>
           </ul>
-       
+
         {% if request.user.is_superuser %}
+          <a
+           href="{% url 'csv-export' %}"
+           class="list-group-item list-group-item-action py-2 ripple"
+           ><span>Export Report</span></a
+          >
         <a
            href="/admin"
            class="list-group-item list-group-item-action py-2 ripple"
