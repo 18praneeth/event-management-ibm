@@ -7,13 +7,6 @@
        >
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-        <a
-           href="{% url 'event' %}"
-           class="list-group-item list-group-item-action py-2 ripple active"
-           aria-current="true"
-           >
-            <span>Event dashboard</span>
-        </a>
           <a class="list-group-item list-group-item-action py-2 ripple" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
             aria-expanded="true">
             Manage Event
@@ -38,7 +31,7 @@
               <a class="dropdown-item" href="{% url 'college-create' %}">Create College</a>
             </li>
             <li>
-              <a class="dropdown-item" href="{% url 'college-details' %}">College details</a>
+              <a class="dropdown-item" href="{% url 'college-details' %}">College Edit</a>
             </li>
           </ul>
        
@@ -46,8 +39,7 @@
         <a
            href="/admin"
            class="list-group-item list-group-item-action py-2 ripple"
-           ><i class="fas fa-chart-line fa-fw me-3"></i
-          ><span>Admin Site</span></a
+           ><span>Admin Site</span></a
           >
         {% endif %}
       </div>

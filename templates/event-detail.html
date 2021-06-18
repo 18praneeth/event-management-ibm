@@ -107,7 +107,7 @@
 {% if not request.user in data.accepted_users.all %}
 <button
   type="button"
-  class="btn btn-primary"
+  class="btn btn-primary mb-2"
   data-mdb-toggle="modal"
   data-mdb-target="#SignupeventModal">
   Signup for this event
@@ -252,7 +252,7 @@
 
 <br>
 
-{% if user.is_superuser %}
+{% comment %} {% if user.is_superuser %}
 <div class="row">
   <ol>
     {% for user in data.accepted_users.all %}
@@ -260,11 +260,11 @@
     {% endfor %}
   </ol>
 </div>
-{% endif %}
+{% endif %} {% endcomment %}
 
 
 <div class="row">
-  <div class="col-md-3 col-sm-6">
+  <div class="col mb-3">
   {% if user.is_superuser %}
           {% if data.publish %}
           <form method="POST">
@@ -290,22 +290,22 @@
         {% endif %}
   {% endif %}
   </div>
-  <div class="col-md-3 col-sm-6">
+  <div class="col mb-3">
     <button type="button" class="btn btn-primary btn-block" data-mdb-toggle="modal" data-mdb-target="#commentModal">
       Add a comment
     </button>
   </div>
-  <div class="col-md-3 col-sm-6">
+  <div class="col mb-3">
   {% if user.is_superuser %}
     <button type="button" class="btn btn-danger btn-block" data-mdb-toggle="modal" data-mdb-target="#DeleteModal">Delete this event</button>
   {% endif %}
   </div>
-  <div class="col-md-3 col-sm-6">
+  <div class="col mb-3">
   {% if user.is_superuser %}
     <a class="btn btn-success btn-block" href="{% url 'event-update' event_id=data.id %}">Update this event</a>
   {% endif %}
   </div>
-  <div class="col-md-3 col-sm-6">
+  <div class="col mb-3">
   {% if user.is_superuser %}
     <a class="btn btn-success btn-block" href="{% url 'event-assign' id=data.id %}">Assign this event</a>
   {% endif %}

@@ -146,7 +146,7 @@ def create_college(request):
         if c_form.is_valid():
             c_form.save()
             messages.success(request,'The college is created')
-            return redirect('college')
+            return redirect('college-details')
     return render(request,'college-details.html',context={'c_form':c_form})
 
 

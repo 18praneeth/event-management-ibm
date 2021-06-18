@@ -13,7 +13,7 @@ class CommentForm(forms.ModelForm):
 class EventCreateForm(forms.ModelForm):
     class Meta:
         model = Event
-        exclude = ['publish', 'accepted_users', 'rejected_users', 'assigned_user']
+        exclude = ['organised_by', 'publish', 'accepted_users', 'rejected_users', 'assigned_user']
 
 
 class CollegeForm(forms.ModelForm):

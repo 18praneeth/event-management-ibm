@@ -16,7 +16,6 @@ class CollegeName(models.Model):
 
 class Event(models.Model):
     date = models.DateField(blank=True, null=True)
-    quarter =  models.CharField(choices=QUARTER_OPTION, max_length=400, null=True, blank=True)
     event_activity_type = models.CharField(max_length=500, choices=EVENT_OPTION, null=True, blank=True)
     technology_tracks = models.CharField(max_length=500, choices=TRACKS_OPTION, null=True, blank=True, verbose_name='Technology Tracks')
     event_activity_mode = models.CharField(max_length=500, choices=EVENT_MODE_OPTION, null=True, blank=True)
