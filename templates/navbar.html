@@ -12,25 +12,35 @@
            class="list-group-item list-group-item-action py-2 ripple active"
            aria-current="true"
            >
-          <i class="fas fa-tachometer-alt fa-fw me-3"></i
-            ><span>Event dashboard</span>
+            <span>Event dashboard</span>
         </a>
-          <a
-           href="{% url 'create-event' %}"
-           class="list-group-item list-group-item-action py-2 ripple"
-           aria-current="true"
-           >
-          <i class="fas fa-tachometer-alt fa-fw me-3"></i
-            ><span>Manage Event</span>
-        </a>
-          <a
-           href="{% url 'college' %}"
-           class="list-group-item list-group-item-action py-2 ripple"
-           aria-current="true"
-           >
-          <i class="fas fa-tachometer-alt fa-fw me-3"></i
-            ><span>Manage College</span>
-        </a>
+          <a class="list-group-item list-group-item-action py-2 ripple" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
+            aria-expanded="true">
+            Manage Event
+          </a>
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" href="{% url 'create-event' %}">Create Event</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'event' %}">Event details</a>
+            </li>
+          </ul>
+
+          <a class="list-group-item list-group-item-action py-2 ripple" href="#" id="navbarDropdown2" role="button" data-mdb-toggle="dropdown"
+            aria-expanded="true">
+            Manage College
+          </a>
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+            <li>
+              <a class="dropdown-item" href="{% url 'college-create' %}">Create College</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'college-details' %}">College details</a>
+            </li>
+          </ul>
        
         {% if request.user.is_superuser %}
         <a
