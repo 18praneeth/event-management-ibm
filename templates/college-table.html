@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<h1>College Details</h1>
 <div class="table-responsive mt-5">
 <br>
 <table id="example" class="table table-striped" style="width:100%">
@@ -12,7 +12,7 @@
                 <th> City</th>
                 <th>State</th>
                 <th>Region</th>
-                <th>College Category</th>
+                <th>Action</th>
                 
             </tr>
         </thead>
@@ -25,7 +25,9 @@
                 <td>{{entry.college_city}}</td>
                 <td>{{entry.college_state}}</td>
                 <td>{{entry.college_region}}</td>
-                <td>{{entry.college_category}}</td>
+                <td><a href="{% url 'college-edit' id=entry.id %}" class="btn btn-outline-info" >Edit</a>
+                    <a href="{% url 'college-edit' id=entry.id %}" class="btn btn-outline-danger" >Delete</a>
+                </td>
            
             </tr>       
         {% endfor %}

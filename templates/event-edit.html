@@ -3,16 +3,19 @@
 
 {% block content %}
 <section>
-
+<div class="row">
+  <div class="col-md-8 offset-md-2">
   <form method='POST'>
     {% csrf_token %}
     <div class='row'>
-        {{e_form | crispy}}
+        {{form | crispy}}
     </div>
-
-    <button class='btn btn-secondary btn-block' type='sumbit'>Update the Event</button>
+    <br>
+    <button class='btn btn-secondary btn-block' type='sumbit'>{{button_text}}</button>
 
   </form>
+  </div>
+</div>
 
 </section>
 

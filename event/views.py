@@ -41,6 +41,26 @@ def college_details(request):
 
 
 @login_required
+def college_edit(request, id):
+    college = get_object_or_404(CollegeName, id=id)
+    form = CollegeForm(instance=college)
+    if request.POST:
+        form = CollegeForm(request.POST, instance=college)
+        if form.is_valid:
+            form.save()
+            return redirect('college-details')
+    
+    context = {
+        'title': "Edit College detail",
+        'form': form,
+        'button_text': 'Update College'
+    }
+
+    return render(request, 'event-edit.html', context)
+
+
+
+@login_required
 def event_detail(request, event_id):
     single_event = get_object_or_404(Event, id=event_id)
     if request.POST:
@@ -90,7 +110,8 @@ def event_update(request, event_id):
             return redirect('event-detail', event_id=event_id)
     
     context = {
-        'e_form': e_form,
+        'form': e_form,
+        'button_text': 'Update Event'
     }
     return render(request, 'event-edit.html', context)
 
