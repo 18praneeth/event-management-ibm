@@ -38,5 +38,4 @@ class EventAssignForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EventAssignForm, self).__init__(*args, **kwargs)
         self.fields["assigned_user"].widget = CheckboxSelectMultiple()
-        # self.fields["industries"].queryset = Industry.objects.all()
 
