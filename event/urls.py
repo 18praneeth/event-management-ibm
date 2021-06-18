@@ -11,6 +11,7 @@ urlpatterns = [
     path('create-event', create_event, name='create-event'),
     path('college-details',college_details,name='college-details'),
     path('college-edit/<int:id>', college_edit, name='college-edit'),
+    path('college-delete/<int:id>', college_delete, name='college-delete'),
     path('accept-event/<int:id>', signup_event, name='signup-event'),
     path('reject-event/<int:id>', reject_event, name='reject-event'),
     path('signup-event/<int:id>', mail_signup, name='mail-signup'),
