@@ -18,14 +18,7 @@
 <div class="card-body">
   <form method='POST'>
   {% csrf_token %}
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Assign the Event</label>
-                <select class="form-control" id="exampleFormControlSelect1" name="assign" required>
-                {% for users in event.accepted_users.all %}
-                    <option>{{users.username}}</option>
-                {% endfor %}
-                </select>
-            </div>
+            {{form | crispy}}
           <button class='btn btn-secondary btn-block mt-3 mb-3' type='sumbit'>Assign the Event</button>   
   </form>
 </div>

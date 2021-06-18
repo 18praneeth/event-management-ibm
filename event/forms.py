@@ -2,6 +2,8 @@ from django import forms
 from django.forms import fields
 from .models import CollegeName, Comments, Event
 from django.utils.translation import gettext as _
+from django.forms.widgets import CheckboxSelectMultiple
+
 
 
 class CommentForm(forms.ModelForm):
@@ -26,4 +28,15 @@ class EventUpdateForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = '__all__'
+
+
+class EventAssignForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ['assigned_user']
+
+    def __init__(self, *args, **kwargs):
+        super(EventAssignForm, self).__init__(*args, **kwargs)
+        self.fields["assigned_user"].widget = CheckboxSelectMultiple()
+        # self.fields["industries"].queryset = Industry.objects.all()
 

@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from .models import Event
 from .models import CollegeName
 from django.contrib.auth.models import User
-from .forms import CollegeForm, CommentForm, EventUpdateForm, EventCreateForm
+from .forms import CollegeForm, CommentForm, EventUpdateForm, EventCreateForm, EventAssignForm
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib import messages
@@ -184,15 +184,15 @@ def mail_signup(request, id):
 @login_required
 def event_control(request, id):
     event = get_object_or_404(Event, id=id)
+    form = EventAssignForm(instance=event)
     if request.POST:
-        username = request.POST['assign']
-        user = get_object_or_404(User, username=username)
-        event.assigned_user = user
-        event.save()
-        messages.success(request, f'Event successfully assigned {username}')
+        if form.is_valid():
+            form.save()
+        messages.success(request, f'Event successfully assigned')
         return redirect('event')
 
     context = {
         'event': event,
+        'form': form
     }
     return render(request, 'event-control.html', context)
