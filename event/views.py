@@ -1,10 +1,12 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Event
+from .models import CollegeName
 from django.contrib.auth.models import User
 from .forms import CollegeForm, CommentForm, EventUpdateForm, EventCreateForm
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib import messages
+from .utils import send_slack_message
 
 
 @login_required
@@ -25,6 +27,17 @@ def home(request):
         'data': events
     }
     return render(request, 'table.html', context=data)
+
+
+@login_required
+def college_details(request):
+    college=CollegeName.objects.all()
+    context={
+        'title':'College Details',
+        'data':college
+    }
+    return render(request,'college-table.html',context=context)
+
 
 
 @login_required
@@ -88,7 +101,8 @@ def create_event(request):
     if request.POST:
         form = EventCreateForm(request.POST)
         if form.is_valid():
-            form.save()
+            event = form.save()
+            send_slack_message(event)
             messages.success(request, 'Your event is Created')
             return redirect('event')
     
@@ -127,6 +141,8 @@ def reject_event(request, id):
     event.rejected_users.add(request.user)
     messages.error(request, 'You have Rejected the Event')
     return redirect('event')  
+
+
 
 
 @login_required
