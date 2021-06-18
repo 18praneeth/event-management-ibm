@@ -58,7 +58,11 @@ def college_edit(request, id):
 
     return render(request, 'event-edit.html', context)
 
-
+@login_required
+def college_delete(request,id):
+    college=get_object_or_404(CollegeName,id=id)
+    college.delete()
+    return redirect('college-details')
 
 @login_required
 def event_detail(request, event_id):

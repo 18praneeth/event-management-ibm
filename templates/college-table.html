@@ -26,7 +26,8 @@
                 <td>{{entry.college_state}}</td>
                 <td>{{entry.college_region}}</td>
                 <td><a href="{% url 'college-edit' id=entry.id %}" class="btn btn-outline-info" >Edit</a>
-                    <a href="{% url 'college-edit' id=entry.id %}" class="btn btn-outline-danger" >Delete</a>
+                <a href="{% url 'college-delete' id=entry.id %}" class="btn btn-outline-danger" >Delete</a>
+                
                 </td>
            
             </tr>       
