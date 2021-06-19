@@ -19,7 +19,7 @@ def send_slack_message(event_object):
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": f"`Date:` {event_object.date}\n`Event activity mode:`{event_object.event_activity_type}\n`Technology tracks:`{event_object.technology_tracks}\n`Event activity mode:`{event_object.event_activity_mode}\n`Session topic name:`{event_object.session_topic_name}\n `Session duration:`{event_object.session_duration}\n`college name:`{event_object.institution_name.college_name}"
+				"text": f"`Date:` {event_object.date}\n`Event activity mode:`{event_object.event_activity_type}\n`Technology tracks:`{event_object.technology_tracks}\n`Event activity mode:`{event_object.event_activity_mode}\n`Session topic name:`{event_object.session_topic_name}\n `Session duration:`{event_object.session_duration}\n"
 			}
 		},
 		{
