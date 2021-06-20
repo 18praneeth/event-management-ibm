@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .choice import *
+import datetime
 
 
 
@@ -31,7 +32,7 @@ class SMEProfile(models.Model):
 
 
 class Event(models.Model):
-    date = models.DateField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True, default=datetime.date.today)
     event_activity_type = models.CharField(max_length=500, choices=EVENT_OPTION, null=True, blank=True,verbose_name='Activity Type')
     technology_tracks = models.CharField(max_length=500, choices=TRACKS_OPTION, null=True, blank=True, verbose_name='Technology Tracks')
     event_activity_mode = models.CharField(max_length=500, choices=EVENT_MODE_OPTION, null=True, blank=True,verbose_name='Activity Mode')
