@@ -7,9 +7,9 @@
 
   <form method='POST'>
     {% csrf_token %}
-    {{c_form | crispy}}
+    {{form | crispy}}
     <br>
-    <button class='btn btn-secondary' type='submit'>Create a new College</button>
+    <button class='btn btn-secondary' type='submit'>{{button_text}}</button>
   </form>
 
 </section>

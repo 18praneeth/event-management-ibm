@@ -13,7 +13,7 @@ urlpatterns = [
     path('college-edit/<int:id>', college_edit, name='college-edit'),
     path('college-delete/<int:id>', college_delete, name='college-delete'),
     path('accept-event/<int:id>', signup_event, name='signup-event'),
-    path('reject-event/<int:id>', reject_event, name='reject-event'),
     path('signup-event/<int:id>', mail_signup, name='mail-signup'),
-    path('event-assign/<int:id>', event_control, name='event-assign')
+    path('event-assign/<int:id>', event_control, name='event-assign'),
+    path('edit-sme/<int:id>', edit_sme, name='edit-sme')
 ]

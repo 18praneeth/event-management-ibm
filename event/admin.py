@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, CollegeName, Comments
+from .models import Event, CollegeName, Comments, SMEProfile
 
 
 @admin.register(Event)
@@ -15,3 +15,6 @@ class CollegeNameClass(admin.ModelAdmin):
 @admin.register(Comments)
 class CommentsClass(admin.ModelAdmin):
     pass
+
+
+admin.site.register(SMEProfile)
