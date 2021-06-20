@@ -120,43 +120,38 @@
 
 
 <div class="row">
+<h2>Event Detail</h2>
   <div class="col-lg-6">
     <ol class="list-group ">
       <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto row">
-          <div class="fw-bold col-md-10">Registered Academic Ambassador (Y/N)</div>
-          <div class="col-md-2">{{data.ambassodor}}</div>
+        <div class="ms-2 me-auto">
+          <div>Registered Academic Ambassador (Y/N): {{data.ambassodor}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">Event Date</div>
-          {{data.date}}
+          <div><strong>Event Date:</strong> {{data.date}}</div>
         </div>
       </li>
       
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">Event/Activity Type</div>
-          {{data.event_activity_type}}
+          <div>Event/Activity Type:{{data.event_activity_type}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">Technology Track</div>
-          {{data.technology_tracks}}
+          <div>Technology Track: {{data.technology_tracks}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">Event/Activity Mode</div>
-          {{data.event_activity_mode}}
+          <div>Event/Activity Mode: {{data.event_activity_mode}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">Organized By</div>
-          {{data.organised_by}}
+          <div>Organized By: {{data.organised_by}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -165,7 +160,7 @@
           <ul class="list-group">
           {% for entry in data.get_comments %}
             <li class="list-group-item">
-              {{entry.comment}}
+              <span class="fw-bold">{{entry.user.username}}:</span> {{entry.comment}}
             </li>
           {% endfor %}
           </ul>
@@ -177,141 +172,133 @@
     <ol class="list-group">
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">Session Topic Name</div>
-          {{data.session_topic_name}}
+          <div>Session Topic Name: {{data.session_topic_name}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">Session Duration in hours (1 - 8)</div>
-          {{data.session_duration}}
+          <div>Session Duration in hours (1 - 8): {{data.session_duration}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">No. of attendees</div>
-          {{data.number_of_attendees}}
+          <div>No. of attendees: {{data.number_of_attendees}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">Institution Name</div>
-          {{data.institution_name.college_name}}
+          <div>Institution Name: {{data.institution_name.college_name}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">Institution City</div>
-          {{data.institution_name.college_city}}
+          <div>Institution City: {{data.institution_name.college_city}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">Subject Matter Expert (SME) Name</div>
-          {{data.sme_details.sme_name}}
+          <div  >Subject Matter Expert (SME) Name: {{data.sme.sme_name}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">SME Notes ID</div>
-          {{data.sme_details.sme_notes_id}}
+          <div>SME Notes ID: {{data.sme.sme_notes_id}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">SME Manager Notes ID</div>
-          {{data.sme_details.sme_manager_notes_id}}
+          <div>SME Manager Notes ID: {{data.sme_details.sme_manager_notes_id}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">Link of Academic Initiative </div>
-          {{data.link}}
+          <div>Link of Academic Initiative: {{data.link}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">Status </div>
-          {{data.status}}
+          <div>Status: {{data.status}} </div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">College Category</div>
-          {{data.college_category}}
+          <div>College Category: {{data.college_category}}</div>
         </div>
       </li>
     </ol>
   </div>
 </div>
 
-<br>
 
-{% comment %} {% if user.is_superuser %}
-<div class="row">
-  <ol>
-    {% for user in data.accepted_users.all %}
-      <li>{{user.username}}</li>
-    {% endfor %}
-  </ol>
+{% if request.user.is_superuser %}
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Signed users</h4>
+          {% for users in data.accepted_users.all %}
+              <li class="list-group-item">{{users.username}}</li>
+          {% endfor %}
+      </div>
+      <div class="col-md-6">
+        <h4>Assign the Event</h4>
+          <form method='POST'>
+            {% csrf_token %}
+            {{a_form | crispy}}
+            <button class='btn btn-secondary btn-block mt-3 mb-3' type='sumbit'>Assign the Event</button>   
+          </form>
+      </div>
+    </div>
+  </div>
 </div>
-{% endif %} {% endcomment %}
+{% endif %}
 
 
+{% comment %} Buttons {% endcomment %}
 <div class="row">
-  <div class="col mb-3">
-  {% if user.is_superuser %}
-          {% if data.publish %}
-          <form method="POST">
-              {% csrf_token %}
-              <input type="hidden" name="hidden_option" value="0">
-              <button type="submit"
-                      class="btn btn-info btn-block">
-                        Unpublish Event
-              </button>
-          </form>
-        {% endif %}
 
-
-        {% if not data.publish %}
-          <form method="POST">
-              {% csrf_token %}
-              <input type="hidden" name="hidden_option" value="1">
-              <button type="submit"
-                      class="btn btn-info btn-block">
-                        Publish  Event
-              </button>
-          </form>
-        {% endif %}
-  {% endif %}
-  </div>
-  <div class="col mb-3">
-    <button type="button" class="btn btn-primary btn-block" data-mdb-toggle="modal" data-mdb-target="#commentModal">
-      Add a comment
-    </button>
-  </div>
-  <div class="col mb-3">
   {% if user.is_superuser %}
-    <button type="button" class="btn btn-danger btn-block" data-mdb-toggle="modal" data-mdb-target="#DeleteModal">Delete event</button>
+    <div class="col mb-3">
+      {% if data.publish %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="hidden_option" value="0">
+            <button type="submit"
+                    class="btn btn-info btn-block">
+                      Unpublish Event
+            </button>
+        </form>
+        {% else %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="hidden_option" value="1">
+            <button type="submit"
+                    class="btn btn-info btn-block">
+                      Publish  Event
+            </button>
+        </form>
+      {% endif %}
+    </div>
   {% endif %}
-  </div>
-  <div class="col mb-3">
   {% if user.is_superuser or request.user in data.assigned_user.all %}
-    <a class="btn btn-success btn-block" href="{% url 'event-update' event_id=data.id %}">Update event</a>
+    <div class="col mb-3">
+      <button type="button" class="btn btn-primary btn-block" data-mdb-toggle="modal" data-mdb-target="#commentModal">
+        Add a comment
+      </button>
+    </div>
+    <div class="col mb-3">
+        <a class="btn btn-success btn-block" href="{% url 'event-update' event_id=data.id %}">Update event</a>
+    </div>
   {% endif %}
-  </div>
-  <div class="col mb-3">
   {% if user.is_superuser %}
-    <a class="btn btn-success btn-block" href="{% url 'event-assign' id=data.id %}">Assign event</a>
+      <div class="col mb-3">
+        <button type="button" class="btn btn-danger btn-block" data-mdb-toggle="modal" data-mdb-target="#DeleteModal">Delete event</button>
+      </div>
   {% endif %}
-  </div>
+
 </div>
 
 
-
-
-
-<br>
 
 </section>
 
