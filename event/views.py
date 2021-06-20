@@ -11,11 +11,11 @@ from .utils import send_slack_message
 @login_required
 def home(request):
     if request.user.is_superuser:
-        events = Event.objects.all()
-        assigned_event = Event.objects.filter(assigned_user=request.user)
+        events = Event.objects.all().order_by('-id')
+        assigned_event = Event.objects.filter(assigned_user=request.user).order_by('-id')
     else:
-        events = Event.objects.filter(publish=True, status="Planned")
-        assigned_event = Event.objects.filter(assigned_user=request.user)
+        events = Event.objects.filter(publish=True, status="Planned").order_by('-id')
+        assigned_event = Event.objects.filter(assigned_user=request.user).order_by('-id')
     data = {
         'title': 'Event Home page',
         'data': events,
