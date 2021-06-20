@@ -1,3 +1,5 @@
+from django.http import response
+from user.forms import RangeRequestForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -15,33 +17,45 @@ def user_logout(request):
 
 
 def csv_export(request):
-    qs = Event.objects.all().values('id','event_activity_type','technology_tracks','event_activity_mode','organised_by','session_topic_name','session_duration','number_of_attendees','institution_name__college_name', 'institution_name__college_city','institution_name__college_state','institution_name__college_region','sme_name','sme_notes_id','sme_manager_notes_id','sme_bu','ur_spoc','link','status','college_category')
-    return render_to_csv_response(qs,
-    filename='Report',
-    field_header_map={
-        'id':'ID',
-        'event_activity_type':'Event Activity Type',
-        'technology_tracks':'Technology Tracks',
-        'event_activity_mode':'Event Activity Mode',
-        'organised_by':'Organised By',
-        'session_topic_name':'Session Topic Name',
-        'session_duration':'Session Duration',
-        'number_of_attendees':'Number Of Attendees',
-        'institution_name__college_name':'College Name',
-        'institution_name__college_city':'College City',
-        'institution_name__college_state':'College State',
-        'institution_name__college_region':'College Region',
-        'sme_name':'SME Name',
-        'sme_notes_id':'SME Notes ID',
-        'sme_manager_notes_id':'SME Manager Notes ID',
-        'sme_bu':'SME BU',
-        'ur_spoc':'UR SPOC',
-        'link':'Link',
-        'status':'Status',
-        'college_category':'College Category',
+    form = RangeRequestForm()
+    if request.POST:
+        form = RangeRequestForm(request.POST)
+        if form.is_valid():
+            start = form.cleaned_data['start']
+            end = form.cleaned_data['end']
 
+            qs = Event.objects.filter(date__gte=start, date__lte=end).values('id','event_activity_type','technology_tracks','event_activity_mode','organised_by','session_topic_name','session_duration','number_of_attendees','institution_name__college_name', 'institution_name__college_city','institution_name__college_state','institution_name__college_region','sme__sme_name','sme__sme_notes_id','sme__sme_manager_notes_id','sme__sme_bu','ur_spoc','link','status','college_category')
+            response = render_to_csv_response(qs,
+            filename='Report',
+            field_header_map={
+                    'id':'ID',
+                    'event_activity_type':'Event Activity Type',
+                    'technology_tracks':'Technology Tracks',
+                    'event_activity_mode':'Event Activity Mode',
+                    'organised_by':'Organised By',
+                    'session_topic_name':'Session Topic Name',
+                    'session_duration':'Session Duration',
+                    'number_of_attendees':'Number Of Attendees',
+                    'institution_name__college_name':'College Name',
+                    'institution_name__college_city':'College City',
+                    'institution_name__college_state':'College State',
+                    'institution_name__college_region':'College Region',
+                    'sme__sme_name':'SME Name',
+                    'sme__sme_notes_id':'SME Notes ID',
+                    'sme__sme_manager_notes_id':'SME Manager Notes ID',
+                    'sme__sme_bu':'SME BU',
+                    'ur_spoc':'UR SPOC',
+                    'link':'Link',
+                    'status':'Status',
+                    'college_category':'College Category',
+                }
+            )
+            return response
+    
+    context = {
+        'form': form
     }
-    )
+    return render(request, 'report.html', context)
 
 
 @login_required

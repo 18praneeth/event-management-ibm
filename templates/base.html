@@ -75,15 +75,31 @@
       {% endfor %}
       {% endif %}
     </script>-->
-        <script>
+    <script>
       $(function () {
         $("#id_date").datepicker({
             dateFormat: 'yy-mm-dd',
             changeMonth: true,
             changeYear: true,
             yearRange: "-10:+10",
-        }).attr("autocomplete", "off");
+        }).attr("autocomplete", "on");
     });
+    $(function () {
+          $("#id_start").datepicker({
+              dateFormat: 'yy-mm-dd',
+              changeMonth: true,
+              changeYear: true,
+              yearRange: "-10:+10",
+          }).attr("autocomplete", "off");
+      })
+     $(function () {
+          $("#id_end").datepicker({
+              dateFormat: 'yy-mm-dd',
+              changeMonth: true,
+              changeYear: true,
+              yearRange: "-10:+10",
+          }).attr("autocomplete", "off");
+      })
     </script>
   </body>
 </html>
