@@ -1,8 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from .models import Event
-from .models import CollegeName
+from .models import Event, CollegeName, SMEProfile
 from django.contrib.auth.models import User
-from .forms import CollegeForm, CommentForm, EventUpdateForm, EventCreateForm, EventAssignForm
+from .forms import CollegeForm, CommentForm, EventUpdateForm, EventCreateForm, EventAssignForm, SMEForm
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib import messages
@@ -39,6 +38,18 @@ def college_details(request):
     return render(request,'college-table.html',context=context)
 
 
+@login_required
+def create_college(request):
+    c_form = CollegeForm()
+
+    if request.POST:
+        c_form = CollegeForm(request.POST)
+        if c_form.is_valid():
+            c_form.save()
+            messages.success(request,'The college is created')
+            return redirect('college-details')
+    return render(request, 'create.html', context={'form':c_form, 'button_text': 'Create college'})
+
 
 @login_required
 def college_edit(request, id):
@@ -63,6 +74,7 @@ def college_delete(request,id):
     college=get_object_or_404(CollegeName,id=id)
     college.delete()
     return redirect('college-details')
+
 
 @login_required
 def event_detail(request, event_id):
@@ -138,36 +150,11 @@ def create_event(request):
 
 
 @login_required
-def create_college(request):
-    c_form = CollegeForm()
-
-    if request.POST:
-        c_form = CollegeForm(request.POST)
-        if c_form.is_valid():
-            c_form.save()
-            messages.success(request,'The college is created')
-            return redirect('college-details')
-    return render(request,'college-details.html',context={'c_form':c_form})
-
-
-
-@login_required
 def signup_event(request, id):
     event = get_object_or_404(Event, id=id)
     event.accepted_users.add(request.user)
     messages.success(request, 'You have successfully signed up for the event.')
     return redirect('event')
-
-
-
-@login_required
-def reject_event(request, id):
-    event = get_object_or_404(Event, id=id)
-    event.rejected_users.add(request.user)
-    messages.error(request, 'You have Rejected the Event')
-    return redirect('event')  
-
-
 
 
 @login_required
@@ -186,6 +173,7 @@ def event_control(request, id):
     event = get_object_or_404(Event, id=id)
     form = EventAssignForm(instance=event)
     if request.POST:
+        form = EventAssignForm(request.POST, instance=event)
         if form.is_valid():
             form.save()
         messages.success(request, f'Event successfully assigned')
@@ -196,3 +184,36 @@ def event_control(request, id):
         'form': form
     }
     return render(request, 'event-control.html', context)
+
+
+# @login_required
+# def create_sme(request):
+#     form = SMEProfile()
+#     if request.POST:
+#         form = SMEProfile(request.POST)
+#         if form.is_valid():
+#             form.save()
+#         return redirect('sme-list')
+    
+#     context = {
+#         'form': form,
+#         'button_text': 'Create SME'
+#     }
+#     return render(request, 'create.html', context)
+
+
+@login_required
+def edit_sme(request, id):
+    sme = get_object_or_404(SMEProfile, id=id)
+    form = SMEForm(instance=sme)
+    if request.POST:
+        form = SMEForm(request.POST, instance=sme)
+        if form.is_valid():
+            form.save()
+        return redirect('sme-list')
+    
+    context = {
+        'form': form,
+        'button_text': 'Save SME'
+    }
+    return render(request, 'create.html', context)

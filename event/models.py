@@ -9,9 +9,25 @@ class CollegeName(models.Model):
     college_city = models.CharField(max_length=500,null=True, blank=True)
     college_state=models.CharField(max_length=500, null=True, blank=True)
     college_region=models.CharField(max_length=500, choices=REGION_OPTION, null=True, blank=True)
+
+
     def __str__(self):
         return self.college_name
 
+
+
+class SMEProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    ambassodor = models.CharField(max_length=500, choices=BOOLEAN_OPTION, blank=True)
+    sme_name=models.CharField(max_length=100,null=True, blank=True)
+    sme_notes_id=models.CharField(max_length=100, verbose_name='SME Notes ID',null=True, blank=True)
+    sme_manager_notes_id=models.CharField(max_length=100 , verbose_name='SME Manager Notes ID',null=True, blank=True)
+    sme_bu = models.CharField(max_length=500, choices=BU_OPTION, null=True, blank=True,verbose_name='SME BU')
+    sme_location = models.CharField(max_length=500, null=True, blank=True, verbose_name='SME Location')
+
+
+    def __str__(self):
+        return self.sme_name
 
 
 class Event(models.Model):
@@ -24,18 +40,13 @@ class Event(models.Model):
     session_duration = models.CharField(max_length=500, choices=SESSION_OPTION, null=True, blank=True, help_text='Session Duration in hours.')
     number_of_attendees = models.IntegerField(default=0, null=True, blank=True)
     institution_name = models.ForeignKey(CollegeName, blank=True, null=True, on_delete=models.SET_NULL)
-    sme_name=models.CharField(max_length=100,null=True, blank=True)
-    ambassodor = models.CharField(max_length=500, choices=BOOLEAN_OPTION, blank=True)
-    sme_notes_id=models.CharField(max_length=100, verbose_name='SME Notes ID',null=True, blank=True)
-    sme_manager_notes_id=models.CharField(max_length=100 , verbose_name='SME Manager Notes ID',null=True, blank=True)
-    sme_bu = models.CharField(max_length=500, choices=BU_OPTION, null=True, blank=True,verbose_name='SME BU')
+    sme = models.ForeignKey(SMEProfile, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='SME')
     ur_spoc = models.CharField(max_length=500, choices=URSPOC_OPTION, null=True, blank=True,verbose_name='UR SPOC')
     link = models.URLField(null=True, blank=True, help_text='Link of Academic Initiative Course/platform to be used from  https://ibm.biz/academic')
     status = models.CharField(max_length=500, choices=STATUS_OPTION, null=True, blank=True)
     college_category = models.CharField(max_length=500, choices=COLLEGE_OPTION, null=True, blank=True)
     publish = models.BooleanField(default=False, help_text='Tick the option if you want to publish the event')
     accepted_users = models.ManyToManyField(User, help_text='Accepted Users', related_name='accepted_user', blank=True)
-    rejected_users = models.ManyToManyField(User, help_text='Rejected User', related_name='rejected_user', blank=True)
     assigned_user = models.ManyToManyField(User, blank=True, help_text='Event Assigneed')
     connected_event = models.ForeignKey(to='Event', null=True, blank=True, help_text='Select the connected event, if you want to make thread of events', on_delete=models.SET_NULL)
 

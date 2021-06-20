@@ -1,9 +1,14 @@
 from django import forms
 from django.forms import fields
-from .models import CollegeName, Comments, Event
+from .models import CollegeName, Comments, Event, SMEProfile
 from django.utils.translation import gettext as _
 from django.forms.widgets import CheckboxSelectMultiple
 
+
+class SMEForm(forms.ModelForm):
+    class Meta:
+        model = SMEProfile
+        exclude = ['user']
 
 
 class CommentForm(forms.ModelForm):
@@ -15,7 +20,7 @@ class CommentForm(forms.ModelForm):
 class EventCreateForm(forms.ModelForm):
     class Meta:
         model = Event
-        exclude = ['organised_by', 'publish', 'accepted_users', 'rejected_users', 'assigned_user']
+        exclude = ['organised_by', 'publish', 'accepted_users', 'assigned_user']
 
 
 class CollegeForm(forms.ModelForm):

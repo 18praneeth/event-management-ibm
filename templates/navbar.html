@@ -7,6 +7,7 @@
        >
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
+          {% if request.user.is_superuser %}
           <a class="list-group-item list-group-item-action py-2 ripple" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
             aria-expanded="true">
             Manage Event
@@ -35,17 +36,12 @@
             </li>
           </ul>
 
-        {% if request.user.is_superuser %}
-          <a
-           href="{% url 'csv-export' %}"
-           class="list-group-item list-group-item-action py-2 ripple"
-           ><span>Export Report</span></a
-          >
-        <a
-           href="/admin"
-           class="list-group-item list-group-item-action py-2 ripple"
-           ><span>Admin Site</span></a
-          >
+        
+        <a href="{% url 'csv-export' %}" class="list-group-item list-group-item-action py-2 ripple"><span>Export Report</span></a>
+        <a href="/admin" class="list-group-item list-group-item-action py-2 ripple"><span>Admin Site</span></a>
+        {% else %}
+        <a href="/" class="list-group-item list-group-item-action py-2 ripple"><span>Dashboard</span></a>
+        <a href="/" class="list-group-item list-group-item-action py-2 ripple"><span>My Profile</span></a>
         {% endif %}
       </div>
     </div>
