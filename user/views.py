@@ -1,16 +1,11 @@
 from django.contrib import messages
-from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth import logout
 from django.contrib import messages
 from djqscsv import render_to_csv_response
 from event.models import Event
-
-
-def home(request):
-    data = {
-        'title': 'User Home page'
-    }
-    return render(request, 'base.html', context=data)
 
 
 def user_logout(request):
@@ -49,3 +44,12 @@ def csv_export(request):
 
     }
     )
+
+
+@login_required
+def profile(request):
+    user = get_object_or_404(User, id=request.user.id)
+    context = {
+        'user': user
+    }
+    return render(request, 'profile.html', context)

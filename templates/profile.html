@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<section>
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Username: {{user.username}}</h4>
+                <hr>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h6 class="mb-0 text-capitalize">SME Name: </h6>
+                        </div>
+                        <div class="col-sm-6 text-dark">
+                            {{ user.smeprofile.sme_name }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h6 class="mb-0 text-capitalize">Notes ID: </h6>
+                        </div>
+                        <div class="col-sm-6 text-dark">
+                            {{ user.smeprofile.sme_notes_id }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h6 class="mb-0 text-capitalize">Manager Notes ID: </h6>
+                        </div>
+                        <div class="col-sm-6 text-dark">
+                            {{ user.smeprofile.sme_manager_notes_id }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h6 class="mb-0 text-capitalize">SME BU: </h6>
+                        </div>
+                        <div class="col-sm-6 text-dark">
+                            {{ user.smeprofile.sme_bu }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h6 class="mb-0 text-capitalize">Location: </h6>
+                        </div>
+                        <div class="col-sm-6 text-dark">
+                            {{ user.smeprofile.sme_location }}
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</section>
+
+
+{% endblock content %}

@@ -27,7 +27,7 @@ class SMEProfile(models.Model):
 
 
     def __str__(self):
-        return self.sme_name
+        return f'{self.sme_name}'
 
 
 class Event(models.Model):

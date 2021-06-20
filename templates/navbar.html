@@ -41,7 +41,7 @@
         <a href="/admin" class="list-group-item list-group-item-action py-2 ripple"><span>Admin Site</span></a>
         {% else %}
         <a href="/" class="list-group-item list-group-item-action py-2 ripple"><span>Dashboard</span></a>
-        <a href="/" class="list-group-item list-group-item-action py-2 ripple"><span>My Profile</span></a>
+        <a href="{% url 'profile' %}" class="list-group-item list-group-item-action py-2 ripple"><span>My Profile</span></a>
         {% endif %}
       </div>
     </div>
