@@ -104,7 +104,7 @@
 </div>
 
 
-{% if not request.user in data.accepted_users.all %}
+{% if not request.user in data.accepted_users.all and not request.user.is_superuser %}
 <button
   type="button"
   class="btn btn-primary mb-2"
@@ -123,9 +123,9 @@
   <div class="col-lg-6">
     <ol class="list-group ">
       <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">Registered Academic Ambassador (Y/N)</div>
-          {{data.ambassodor}}
+        <div class="ms-2 me-auto row">
+          <div class="fw-bold col-md-10">Registered Academic Ambassador (Y/N)</div>
+          <div class="col-md-2">{{data.ambassodor}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -296,7 +296,7 @@
   {% endif %}
   </div>
   <div class="col mb-3">
-  {% if user.is_superuser %}
+  {% if user.is_superuser or request.user in data.assigned_user.all %}
     <a class="btn btn-success btn-block" href="{% url 'event-update' event_id=data.id %}">Update event</a>
   {% endif %}
   </div>

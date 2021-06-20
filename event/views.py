@@ -12,11 +12,14 @@ from .utils import send_slack_message
 def home(request):
     if request.user.is_superuser:
         events = Event.objects.all()
+        assigned_event = Event.objects.filter(assigned_user=request.user)
     else:
-        events = Event.objects.filter(publish=True)
+        events = Event.objects.filter(publish=True, status="Planned")
+        assigned_event = Event.objects.filter(assigned_user=request.user)
     data = {
         'title': 'Event Home page',
-        'data': events
+        'data': events,
+        'data2': assigned_event
     }
     return render(request, 'table.html', context=data)
 
@@ -168,7 +171,9 @@ def event_control(request, id):
     if request.POST:
         form = EventAssignForm(request.POST, instance=event)
         if form.is_valid():
-            form.save()
+            event = form.save()
+            event.status = 'Assigned'
+            event.save()
         messages.success(request, f'Event successfully assigned')
         return redirect('event')
 
