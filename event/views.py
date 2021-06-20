@@ -11,11 +11,11 @@ from .utils import send_slack_message
 @login_required
 def home(request):
     if request.user.is_superuser:
-        events = Event.objects.all()
-        assigned_event = Event.objects.filter(assigned_user=request.user)
+        events = Event.objects.all().order_by('-id')
+        assigned_event = Event.objects.filter(assigned_user=request.user).order_by('-id')
     else:
-        events = Event.objects.filter(publish=True, status="Planned")
-        assigned_event = Event.objects.filter(assigned_user=request.user)
+        events = Event.objects.filter(publish=True, status="Planned").order_by('-id')
+        assigned_event = Event.objects.filter(assigned_user=request.user).order_by('-id')
     data = {
         'title': 'Event Home page',
         'data': events,
@@ -75,29 +75,41 @@ def college_delete(request,id):
 @login_required
 def event_detail(request, event_id):
     single_event = get_object_or_404(Event, id=event_id)
+    a_form = EventAssignForm(instance=single_event)
+    c_form = CommentForm()
     if request.POST:
         val = request.POST.get('hidden_option')
+
         if val == "1":
             single_event.publish = True
             single_event.save()
             send_slack_message(single_event)
+            return redirect('event-detail', event_id=event_id)
         elif val == "0":
             single_event.publish = False
             single_event.save()
+            return redirect('event-detail', event_id=event_id)
+
         c_form = CommentForm(request.POST)
+        a_form = EventAssignForm(request.POST, instance=single_event)
+
         if c_form.is_valid():
             c_form.instance.user = request.user
             c_form.instance.event = single_event
             messages.success(request, 'Your comment is posted')
             c_form.save()
-            return redirect('event')
+            return redirect('event-detail', event_id=event_id)
 
+        if a_form.is_valid():
+            event = a_form.save()
+            event.status = 'Assigned'
+            event.save()
+            return redirect('event-detail', event_id=event_id)
 
-    c_form = CommentForm()
-    
     data = {
         'data': single_event,
         'form': c_form,
+        'a_form': a_form
     }
     return render(request, 'event-detail.html', context=data)
 
@@ -163,25 +175,6 @@ def mail_signup(request, id):
     return render(request, 'mail-signup.html', context)
 
 
-
-@login_required
-def event_control(request, id):
-    event = get_object_or_404(Event, id=id)
-    form = EventAssignForm(instance=event)
-    if request.POST:
-        form = EventAssignForm(request.POST, instance=event)
-        if form.is_valid():
-            event = form.save()
-            event.status = 'Assigned'
-            event.save()
-        messages.success(request, f'Event successfully assigned')
-        return redirect('event')
-
-    context = {
-        'event': event,
-        'form': form
-    }
-    return render(request, 'event-control.html', context)
 
 
 # @login_required
