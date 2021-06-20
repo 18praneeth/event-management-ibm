@@ -10,13 +10,6 @@ from .utils import send_slack_message
 
 @login_required
 def home(request):
-    send_mail(
-            'Subject here',
-            'Here is the message.',
-            'from@example.com',
-            ['to@example.com'],
-            fail_silently=False,
-        )
     if request.user.is_superuser:
         events = Event.objects.all()
     else:

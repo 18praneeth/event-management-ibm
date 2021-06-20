@@ -9,10 +9,11 @@
             <tr>
                 
                 <th>Event Date</th>
-                <th>Quarter</th>
                 <th>Event/Activity Type</th>
                 <th>Technology Track</th>
-                <th>Organised By</th>
+                {% comment %} eventmode
+                college
+                status {% endcomment %}
                 <th>Detail</th>
             </tr>
         </thead>
@@ -21,10 +22,8 @@
             <tr>
                
                 <td>{{entry.date | date:"d"}}-{{entry.date | date:"M"}}-{{entry.date | date:"Y"}}</td>
-                <td>{{entry.quarter}}</td>
                 <td>{{entry.event_activity_type}}</td>
                 <td>{{entry.technology_tracks}}</td>
-                <td>{{entry.organised_by}}</td>
                 <td><a href="{% url 'event-detail' event_id=entry.id %}" class="btn btn-outline-info" >Detail</a></td>
             </tr>       
         {% endfor %}

@@ -90,9 +90,9 @@ URSPOC_OPTION=(
 
 STATUS_OPTION=(
     ('Planned','Planned'),
+    ('Assigned','Assigned'),
     ('Completed','Completed'),
-    ('Approved','Approved'),
-    ('Rejected','Rejected')
+    ('Closed','Closed'),
 )
 
 
