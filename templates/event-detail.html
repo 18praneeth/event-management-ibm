@@ -124,227 +124,121 @@
     <ol class="list-group ">
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto row">
-          <div class="row">
-          <div class="col-md-10">
-          <div class="fw-bold col-md-10">Registered Academic Ambassador(Y/N)</div>
-          </div>
-          <div class="col-md-2">
-          <div class="col-md-2">{{data.sme_details.ambassodor}}</div>
-          </div>
+          <div class="fw-bold col-md-10">Registered Academic Ambassador (Y/N)</div>
+          <div class="col-md-2">{{data.ambassodor}}</div>
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="row">
-          <div class="col-md-3">
-          <div class="fw-bold">Date</div>
-           </div>
-          <div class="col-md-9">
+          <div class="fw-bold">Event Date</div>
           {{data.date}}
-           </div>
-        </div>
         </div>
       </li>
       
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-         <div class="row">
-          <div class="col-md-8">
-          <div class="fw-bold">Activity Type</div>
-          </div>
-          <div class="col-md-4">
+          <div class="fw-bold">Event/Activity Type</div>
           {{data.event_activity_type}}
         </div>
-        </div>
-        </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="row">
-          <div class="col-md-8">
           <div class="fw-bold">Technology Track</div>
-          </div>
-          <div class="col-md-4">
           {{data.technology_tracks}}
         </div>
-        </div>
-        </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="row">
-          <div class="col-md-6">
-          <div class="fw-bold">Activity Mode</div>
-          </div>
-          <div class="col-md-2">
+          <div class="fw-bold">Event/Activity Mode</div>
           {{data.event_activity_mode}}
         </div>
-        </div>
-        </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="row">
-          <div class="col-md-8">
           <div class="fw-bold">Organized By</div>
-          </div>
-          <div class="col-md-4">
           {{data.organised_by}}
         </div>
-        </div>
-        </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="row">
-          <div class="col-md-6">
           <div class="fw-bold">Comments</div>
           <ul class="list-group">
-          </div>
-          <div class="col-md-2">
           {% for entry in data.get_comments %}
             <li class="list-group-item">
               {{entry.comment}}
             </li>
           {% endfor %}
-          </div>
-        </div>
           </ul>
         </div>
       </li>
     </ol>
   </div>
-  
   <div class="col-lg-6">
     <ol class="list-group">
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="row">
-          <div class="col-md-10">
-          <div class="fw-bold">Topic Name</div>
-          </div>
-          <div class="col-md-2">
-          {{data.sme_details.session_topic_name}}
+          <div class="fw-bold">Session Topic Name</div>
+          {{data.session_topic_name}}
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="row">
-          <div class="col-md-10">
-          <div class="fw-bold">Duration(hours)</div>
-          </div>
-          <div class="col-md-2">
-          {{data.sme_details.session_duration}}
-        </div>
-        </div>
+          <div class="fw-bold">Session Duration in hours (1 - 8)</div>
+          {{data.session_duration}}
         </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="row">
-          <div class="col-md-10">
           <div class="fw-bold">No. of attendees</div>
-          </div>
-          <div class="col-md-2">
           {{data.number_of_attendees}}
         </div>
-        </div>
-        </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="row">
-          <div class="col-md-11">
           <div class="fw-bold">Institution Name</div>
-          </div>
-          <div class="col-md-1">
           {{data.institution_name.college_name}}
         </div>
-        </div>
-        </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="col-md-4">
-          <div class="fw-bold">City</div>
-          </div>
-          <div class="col-md-8">
+          <div class="fw-bold">Institution City</div>
           {{data.institution_name.college_city}}
         </div>
-        </div>
-        </div>
       </li>
-
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="row">
-          <div class="col-md-10">
-          <div class="fw-bold">SME Name</div>
-          </div>
-          <div class="col-md-2">
+          <div class="fw-bold">Subject Matter Expert (SME) Name</div>
           {{data.sme_details.sme_name}}
         </div>
-        </div>
-        </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="row">
-          <div class="col-md-10">
-          <div class="fw-bold">Notes ID</div>
-          </div>
-          <div class="col-md-2">
+          <div class="fw-bold">SME Notes ID</div>
           {{data.sme_details.sme_notes_id}}
         </div>
-        </div>
-        </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="row">
-          <div class="col-md-10">
-          <div class="fw-bold">Manager Notes ID</div>
-          </div>
-          <div class="col-md-2">
+          <div class="fw-bold">SME Manager Notes ID</div>
           {{data.sme_details.sme_manager_notes_id}}
         </div>
-        </div>
-        </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="row">
-          <div class="col-md-10">
           <div class="fw-bold">Link of Academic Initiative </div>
-          </div>
-          <div class="col-md-2">
           {{data.link}}
         </div>
-        </div>
-        </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="row">
-          <div class="col-md-6">
           <div class="fw-bold">Status </div>
-          </div>
-          <div class="col-md-6">
           {{data.status}}
         </div>
-        </div>
-        </div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-        <div class="row">
-          <div class="col-md-10">
           <div class="fw-bold">College Category</div>
-          </div>
-          <div class="col-md-2">
           {{data.college_category}}
-        </div>
-        </div>
         </div>
       </li>
     </ol>
