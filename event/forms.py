@@ -32,7 +32,7 @@ class CollegeForm(forms.ModelForm):
 class EventUpdateForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = '__all__'
+        exclude = [ 'publish','accepted_users','assigned_user']
 
 
 class EventAssignForm(forms.ModelForm):
