@@ -5,10 +5,10 @@ from .choice import *
 
 
 class CollegeName(models.Model):
-    college_name = models.CharField(max_length=500,null=True, blank=True)
-    college_city = models.CharField(max_length=500,null=True, blank=True)
-    college_state=models.CharField(max_length=500, null=True, blank=True)
-    college_region=models.CharField(max_length=500, choices=REGION_OPTION, null=True, blank=True)
+    college_name = models.CharField(max_length=500,null=True, blank=True )
+    college_city = models.CharField(max_length=500,null=True, blank=True,verbose_name='City')
+    college_state=models.CharField(max_length=500, null=True, blank=True,verbose_name='State')
+    college_region=models.CharField(max_length=500, choices=REGION_OPTION, null=True, blank=True,verbose_name='Region')
 
 
     def __str__(self):
@@ -19,11 +19,11 @@ class CollegeName(models.Model):
 class SMEProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     ambassodor = models.CharField(max_length=500, choices=BOOLEAN_OPTION, blank=True)
-    sme_name=models.CharField(max_length=100,null=True, blank=True)
-    sme_notes_id=models.CharField(max_length=100, verbose_name='SME Notes ID',null=True, blank=True)
-    sme_manager_notes_id=models.CharField(max_length=100 , verbose_name='SME Manager Notes ID',null=True, blank=True)
-    sme_bu = models.CharField(max_length=500, choices=BU_OPTION, null=True, blank=True,verbose_name='SME BU')
-    sme_location = models.CharField(max_length=500, null=True, blank=True, verbose_name='SME Location')
+    sme_name=models.CharField(max_length=100,null=True, blank=True,verbose_name='Name')
+    sme_notes_id=models.CharField(max_length=100, verbose_name='Notes ID',null=True, blank=True)
+    sme_manager_notes_id=models.CharField(max_length=100 , verbose_name=' Manager Notes ID',null=True, blank=True)
+    sme_bu = models.CharField(max_length=500, choices=BU_OPTION, null=True, blank=True,verbose_name='BU')
+    sme_location = models.CharField(max_length=500, null=True, blank=True, verbose_name='Location')
 
 
     def __str__(self):
@@ -32,12 +32,12 @@ class SMEProfile(models.Model):
 
 class Event(models.Model):
     date = models.DateField(blank=True, null=True)
-    event_activity_type = models.CharField(max_length=500, choices=EVENT_OPTION, null=True, blank=True)
+    event_activity_type = models.CharField(max_length=500, choices=EVENT_OPTION, null=True, blank=True,verbose_name='Activity Type')
     technology_tracks = models.CharField(max_length=500, choices=TRACKS_OPTION, null=True, blank=True, verbose_name='Technology Tracks')
-    event_activity_mode = models.CharField(max_length=500, choices=EVENT_MODE_OPTION, null=True, blank=True)
+    event_activity_mode = models.CharField(max_length=500, choices=EVENT_MODE_OPTION, null=True, blank=True,verbose_name='Activity Mode')
     organised_by = models.CharField(max_length=500, choices=ORGANISED_OPTION, null=True, blank=True)
     session_topic_name = models.CharField(max_length=100, blank=True, null=True)
-    session_duration = models.CharField(max_length=500, choices=SESSION_OPTION, null=True, blank=True, help_text='Session Duration in hours.')
+    session_duration = models.CharField(max_length=500, choices=SESSION_OPTION, null=True, blank=True,verbose_name='Duration', help_text='Session Duration in hours.')
     number_of_attendees = models.IntegerField(default=0, null=True, blank=True)
     institution_name = models.ForeignKey(CollegeName, blank=True, null=True, on_delete=models.SET_NULL)
     sme = models.ForeignKey(SMEProfile, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='SME')
