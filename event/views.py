@@ -4,7 +4,7 @@ from .forms import CollegeForm, CommentForm, EventUpdateForm, EventCreateForm, E
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib import messages
-from .utils import send_slack_message
+from .utils import send_slack_message, send_mail_assigned
 
 
 @login_required
@@ -102,6 +102,12 @@ def event_detail(request, event_id):
         if a_form.is_valid():
             event = a_form.save()
             event.status = 'Assigned'
+
+            assigned_list = []
+            for user in event.assigned_user.all():
+                assigned_list.append(user.email)
+            send_mail_assigned(assigned_list, event)
+
             event.save()
             return redirect('event-detail', event_id=event_id)
 
