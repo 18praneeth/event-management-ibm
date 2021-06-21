@@ -36,6 +36,19 @@
             </li>
           </ul>
 
+           <a class="list-group-item list-group-item-action py-2 ripple" href="#" id="navbarDropdown2" role="button" data-mdb-toggle="dropdown"
+            aria-expanded="true">
+            Manage SME
+          </a>
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+            <li>
+              <a class="dropdown-item" href="{% url 'sme-list' %}">SME List</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'create-sme' %}">Create SME</a>
+            </li>
+          </ul>
         
         <a href="{% url 'csv-export' %}" class="list-group-item list-group-item-action py-2 ripple"><span>Export Report</span></a>
         <a href="/admin" class="list-group-item list-group-item-action py-2 ripple"><span>Admin Site</span></a>
