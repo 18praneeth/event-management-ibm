@@ -1,3 +1,4 @@
+from os import name
 from django.urls import path
 from .views import *
 
@@ -14,5 +15,6 @@ urlpatterns = [
     path('college-delete/<int:id>', college_delete, name='college-delete'),
     path('accept-event/<int:id>', signup_event, name='signup-event'),
     path('signup-event/<int:id>', mail_signup, name='mail-signup'),
-    path('edit-sme/<int:id>', edit_sme, name='edit-sme')
+    path('edit-sme/<int:id>', edit_sme, name='edit-sme'),
+    path('sme-list/', sme_list, name='sme-list')
 ]

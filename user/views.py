@@ -1,5 +1,4 @@
-from django.http import response
-from user.forms import RangeRequestForm
+from user.forms import RangeRequestForm, UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -65,3 +64,20 @@ def profile(request):
         'user': user
     }
     return render(request, 'profile.html', context)
+
+
+@login_required
+def register(request):
+    if request.POST:
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect('edit-sme', id=user.smeprofile.id)
+    else:
+        form = UserRegisterForm()
+
+    context = {
+        'form': form,
+        'button_text': 'Create SME'
+    }
+    return render(request, 'create.html', context)
