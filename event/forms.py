@@ -35,8 +35,30 @@ class EventCreateForm(forms.ModelForm):
             ),
             Row(
                 Column('event_activity_mode', css_class='form-group col'),
+                Column('session_duration', css_class='form-group col'),
+                Column('number_of_attendees', css_class='form-group col'),
                 css_class='row'
             ), 
+            Row(
+                Column('session_topic_name', css_class='form-group col'),
+                Column('institution_name', css_class='form-group col'),
+                css_class='row'
+            ), 
+            Row(
+                Column('sme', css_class='form-group col'),
+                Column('link', css_class='form-group col'),
+                css_class='row'
+            ),
+             Row(
+                Column('ur_spoc', css_class='form-group col'),
+                Column('status', css_class='form-group col'),
+                css_class='row'
+            ), 
+            Row(
+                Column('college_category', css_class='form-group col'),
+                Column('connected_event', css_class='form-group col'),
+                css_class='row'
+            ),
             Submit('submit', 'Create Event', css_class='mt-2 btn-block')
         )
 
