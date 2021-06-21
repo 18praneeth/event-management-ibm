@@ -1,6 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Event, CollegeName, SMEProfile
-from django.contrib.auth.models import User
 from .forms import CollegeForm, CommentForm, EventUpdateForm, EventCreateForm, EventAssignForm, SMEForm
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
@@ -177,22 +176,6 @@ def mail_signup(request, id):
 
 
 
-# @login_required
-# def create_sme(request):
-#     form = SMEProfile()
-#     if request.POST:
-#         form = SMEProfile(request.POST)
-#         if form.is_valid():
-#             form.save()
-#         return redirect('sme-list')
-    
-#     context = {
-#         'form': form,
-#         'button_text': 'Create SME'
-#     }
-#     return render(request, 'create.html', context)
-
-
 @login_required
 def edit_sme(request, id):
     sme = get_object_or_404(SMEProfile, id=id)
@@ -208,3 +191,13 @@ def edit_sme(request, id):
         'button_text': 'Save SME'
     }
     return render(request, 'create.html', context)
+
+
+
+@login_required
+def sme_list(request):
+    smes = SMEProfile.objects.all()
+    context = {
+        'smes': smes
+    }
+    return render(request, 'sme-list.html', context)

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="card mt-1">
+    <div class="card-body table-responsive ">
+    <h4 class="card-title">List of SME</h4>
+            <table id="example2" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Activity Type</th>
+                            <th>Technology Track</th>
+                            <th>Mode</th>
+                            <th>College</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for entry in smes %}
+                        <tr>
+                        
+                            <td>{{entry.date | date:"d"}}-{{entry.date | date:"M"}}-{{entry.date | date:"Y"}}</td>
+                            <td>{{entry.event_activity_type}}</td>
+                            <td>{{entry.technology_tracks}}</td>
+                            <td>{{entry.event_activity_mode}}</td>
+                            <td>{{entry.institution_name.college_name}}
+                            <td>{{entry.status}}</td>
+                            <td><a href="{% url 'edit-sme' id=entry.id %}" class="btn btn-outline-info" >Edit SME</a></td>
+                        </tr>       
+                    {% endfor %}
+
+                    </tbody>
+
+            </table>
+    </div>
+</div>
+
+{% endblock content %}
+
+
