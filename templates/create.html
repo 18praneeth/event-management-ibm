@@ -6,10 +6,15 @@
 <section>
 
   <form method='POST'>
-    {% csrf_token %}
-    {{form | crispy}}
-    <br>
-    <button class='btn btn-secondary' type='submit'>{{button_text}}</button>
+  <div class="row">
+    <div class="col-md-8 offset-lg-2">
+        {% csrf_token %}
+        {{form | crispy}}
+        <br>
+        <button class='btn btn-secondary' type='submit'>{{button_text}}</button>
+    </div>
+  </div>
+
   </form>
 
 </section>

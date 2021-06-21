@@ -1,8 +1,9 @@
 from django import forms
-from django.forms import fields
 from .models import CollegeName, Comments, Event, SMEProfile
 from django.utils.translation import gettext as _
 from django.forms.widgets import CheckboxSelectMultiple
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Row, Column
 
 
 class SMEForm(forms.ModelForm):
@@ -21,6 +22,23 @@ class EventCreateForm(forms.ModelForm):
     class Meta:
         model = Event
         exclude = ['organised_by', 'publish', 'accepted_users', 'assigned_user']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(
+                Column('date', css_class='form-group col'),
+                Column('event_activity_type', css_class='form-group col'),
+                Column('technology_tracks', css_class='form-group col'),
+                css_class='row'
+            ),
+            Row(
+                Column('event_activity_mode', css_class='form-group col'),
+                css_class='row'
+            ), 
+            Submit('submit', 'Create Event', css_class='mt-2 btn-block')
+        )
 
 
 class CollegeForm(forms.ModelForm):

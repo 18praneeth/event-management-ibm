@@ -7,12 +7,7 @@
 
   <form method='POST'>
     {% csrf_token %}
-    <div class='row'>
-        <div class='col-lg-8 offset-lg-2'>
-            {{form | crispy}}
-          <button class='btn btn-secondary btn-block mt-3 mb-3' type='sumbit'>Create a Event</button>
-        </div>
-    </div>
+            {% crispy form %}
   </form>
 
 </section>
