@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters%}
+{% load crispy_forms_tags %} 
+
+{% block content %}
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-table"></i>
+                CSV Upload
+            </div>
+            <div class="card-body">
+            {% if message %}
+                {{message}}
+            {% endif %}
+                <form action="" method="POST" enctype="multipart/form-data"
+                      class="form-horizontal">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group input-group-lg">
+                                    <div class="custom-file">
+                                        <input type="file" class="form-control custom-file-input file" name="csv_file"
+                                            id="input01" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="input-group input-group-lg">
+                                    <div class="custom-file">
+                                        <button class="btn btn-primary btn-block" type="submit">Upload<span></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+{% endblock content %}
