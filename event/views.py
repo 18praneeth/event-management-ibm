@@ -236,7 +236,7 @@ def csv_upload(request):
                         event_activity_mode = fields[7],
                         organised_by = fields[8],
                         session_topic_name = fields[9],
-                        session_duration = int(fields[10])
+                        session_duration = fields[10]
                     )
                     event.save()
                 except IndexError:
