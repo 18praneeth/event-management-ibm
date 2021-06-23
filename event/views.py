@@ -230,8 +230,8 @@ def csv_upload(request):
                     date = parser.parse(f'{fields[2]} {fields[1]} {fields[3]}')
                     print('*' * 200)
                     college = CollegeName(
-                        collage_name = fields['10'],
-                        college_city = fields['10']
+                        collage_name = fields['12'],
+                        college_city = fields['13']
                     )
                     college = college.save()
                     event = Event(
@@ -242,6 +242,11 @@ def csv_upload(request):
                         organised_by = fields[8],
                         session_topic_name = fields[9],
                         session_duration = fields[10],
+                        number_of_attendees=fields[11],
+                        ur_spoc=fields[20],
+                        link=fields[18],
+                        status=fields[21],
+                        college_category=fields[22]
                     )
                     event.save()
                 except IndexError:
