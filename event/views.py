@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from .models import Event, CollegeName, SMEProfile
 from .forms import CollegeForm, CommentForm, EventUpdateForm, EventCreateForm, EventAssignForm, SMEForm
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
+from dateutil import parser
 from django.contrib import messages
 from .utils import send_slack_message, send_mail_assigned
 
@@ -211,6 +211,39 @@ def sme_list(request):
 
 @login_required
 def csv_upload(request):
+    if request.POST:
+        csv_file = request.FILES['csv_file']
+        if len(csv_file) == 0:
+            context = {
+                'message': 'Please select only CSV files'
+            }
+            return render(request, 'csv_upload.html', context)
+        
+        file_data = csv_file.read().decode('utf-8')
+        lines = file_data.split('\n')
+        for index, line in enumerate(lines):
+            fields = line.split(",")
+            if index < 9:
+                continue
+            else:
+                try:
+                    date = parser.parse(f'{fields[2]} {fields[1]} {fields[3]}')
+                    print('*' * 200)
+                    event = Event(
+                        date = date.date(),
+                        event_activity_type = fields[5],
+                        technology_tracks = fields[6],
+                        event_activity_mode = fields[7],
+                        organised_by = fields[8],
+                        session_topic_name = fields[9],
+                        session_duration = int(fields[10])
+                    )
+                    event.save()
+                except IndexError:
+                    continue
+
+                
+
     return render(request, 'csv_upload.html')
 
 

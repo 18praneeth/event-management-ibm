@@ -9,6 +9,9 @@
                 CSV Upload
             </div>
             <div class="card-body">
+            {% if message %}
+                {{message}}
+            {% endif %}
                 <form action="" method="POST" enctype="multipart/form-data"
                       class="form-horizontal">
                     {% csrf_token %}
@@ -18,7 +21,7 @@
                                 <div class="input-group input-group-lg">
                                     <div class="custom-file">
                                         <input type="file" class="form-control custom-file-input file" name="csv_file"
-                                            id="input01">
+                                            id="input01" required>
                                     </div>
                                 </div>
                             </div>
