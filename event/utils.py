@@ -1,6 +1,7 @@
 from asyncio import events
 import slack
 from event_management.settings import SLACK_TOKEN
+from django.core.mail import send_mail
 
 
 def send_slack_message(event_object):
@@ -42,3 +43,17 @@ def send_slack_message(event_object):
 
     client_obj = slack.WebClient(token=SLACK_TOKEN)
     client_obj.chat_postMessage(**message)
+
+
+def send_mail_assigned(assigned_list, event_object):
+
+	content =  f"Date: {event_object.date}\nEvent activity mode:{event_object.event_activity_type}\nTechnology tracks:{event_object.technology_tracks}\nEvent activity mode:{event_object.event_activity_mode}\nSession topic name:{event_object.session_topic_name}\n Session duration:{event_object.session_duration}\n"
+
+
+	send_mail(
+		'Event is assigned!!',
+		content,
+		'from@example.com',
+		assigned_list,
+		fail_silently=False,
+	)

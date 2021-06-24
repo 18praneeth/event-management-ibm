@@ -16,5 +16,6 @@ urlpatterns = [
     path('accept-event/<int:id>', signup_event, name='signup-event'),
     path('signup-event/<int:id>', mail_signup, name='mail-signup'),
     path('edit-sme/<int:id>', edit_sme, name='edit-sme'),
-    path('sme-list/', sme_list, name='sme-list')
+    path('sme-list/', sme_list, name='sme-list'),
+    path('import', csv_upload, name='import')
 ]
