@@ -245,8 +245,9 @@ def csv_upload(request):
                         number_of_attendees=fields[11],
                         ur_spoc=fields[20],
                         link=fields[18],
+                        institution_name=college,
                         status=fields[21],
-                        college_category=fields[22]
+                        college_category=fields[22],
                     )
                     event.save()
                 except IndexError:
