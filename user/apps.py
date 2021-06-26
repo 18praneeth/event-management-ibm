@@ -6,4 +6,4 @@ class UserConfig(AppConfig):
     name = 'user'
 
     def ready(self):
-        import event.signals
+        import user.signals

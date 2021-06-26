@@ -17,7 +17,7 @@ class CollegeName(models.Model):
 
 
 
-class SMEProfile(models.Model):
+class Smeprofile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     ambassodor = models.CharField(max_length=500, choices=BOOLEAN_OPTION, blank=True)
     sme_name=models.CharField(max_length=100,null=True, blank=True,verbose_name='Name')
@@ -41,7 +41,7 @@ class Event(models.Model):
     session_duration = models.CharField(max_length=500, choices=SESSION_OPTION, null=True, blank=True,verbose_name='Duration', help_text='Session Duration in hours.')
     number_of_attendees = models.IntegerField(default=0, null=True, blank=True)
     institution_name = models.ForeignKey(CollegeName, blank=True, null=True, on_delete=models.SET_NULL)
-    sme = models.ForeignKey(SMEProfile, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='SME')
+    sme = models.ForeignKey(Smeprofile, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='SME')
     ur_spoc = models.CharField(max_length=500, choices=URSPOC_OPTION, null=True, blank=True,verbose_name='UR SPOC')
     link = models.URLField(null=True, blank=True, help_text='Link of Academic Initiative Course/platform to be used from  https://ibm.biz/academic')
     status = models.CharField(max_length=500, choices=STATUS_OPTION, null=True, blank=True)

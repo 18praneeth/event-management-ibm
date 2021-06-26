@@ -1,5 +1,5 @@
 from django import forms
-from .models import CollegeName, Comments, Event, SMEProfile
+from .models import CollegeName, Comments, Event, Smeprofile
 from django.utils.translation import gettext as _
 from django.forms.widgets import CheckboxSelectMultiple
 from crispy_forms.helper import FormHelper
@@ -8,7 +8,7 @@ from crispy_forms.layout import Layout, Submit, Row, Column
 
 class SMEForm(forms.ModelForm):
     class Meta:
-        model = SMEProfile
+        model = Smeprofile
         exclude = ['user']
 
 

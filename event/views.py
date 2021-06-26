@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from .models import Event, CollegeName, SMEProfile
+from .models import Event, CollegeName, Smeprofile
 from .forms import CollegeForm, CommentForm, EventUpdateForm, EventCreateForm, EventAssignForm, SMEForm
 from django.contrib.auth.decorators import login_required
 from dateutil import parser
@@ -184,7 +184,7 @@ def mail_signup(request, id):
 
 @login_required
 def edit_sme(request, id):
-    sme = get_object_or_404(SMEProfile, id=id)
+    sme = get_object_or_404(Smeprofile, id=id)
     form = SMEForm(instance=sme)
     if request.POST:
         form = SMEForm(request.POST, instance=sme)
@@ -202,7 +202,7 @@ def edit_sme(request, id):
 
 @login_required
 def sme_list(request):
-    smes = SMEProfile.objects.all()
+    smes = Smeprofile.objects.all()
     context = {
         'smes': smes
     }

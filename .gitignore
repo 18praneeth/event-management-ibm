@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 # Specific to Project
-*/migrations
+*/migrations/0*.py
 
 
 # C extensions

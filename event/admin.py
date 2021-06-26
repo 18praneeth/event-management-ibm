@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, CollegeName, Comments, SMEProfile
+from .models import Event, CollegeName, Comments, Smeprofile
 
 
 @admin.register(Event)
@@ -17,4 +17,4 @@ class CommentsClass(admin.ModelAdmin):
     pass
 
 
-admin.site.register(SMEProfile)
+admin.site.register(Smeprofile)
