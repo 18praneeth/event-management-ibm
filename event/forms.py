@@ -1,4 +1,5 @@
 from django import forms
+from django.db.models import fields
 from .models import CollegeName, Comments, Event, Smeprofile
 from django.utils.translation import gettext as _
 from django.forms.widgets import CheckboxSelectMultiple
@@ -22,6 +23,9 @@ class EventCreateForm(forms.ModelForm):
     class Meta:
         model = Event
         exclude = ['organised_by', 'publish', 'accepted_users', 'assigned_user']
+        labels = {
+            'date': _('Event Date')
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -45,12 +49,12 @@ class EventCreateForm(forms.ModelForm):
                 css_class='row'
             ), 
             Row(
-                Column('sme', css_class='form-group col'),
                 Column('link', css_class='form-group col'),
+                Column('ur_spoc', css_class='form-group col'),
                 css_class='row'
             ),
              Row(
-                Column('ur_spoc', css_class='form-group col'),
+                Column('signup_by', css_class='form-group col'),
                 Column('status', css_class='form-group col'),
                 css_class='row'
             ), 
@@ -83,4 +87,10 @@ class EventAssignForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EventAssignForm, self).__init__(*args, **kwargs)
         self.fields["assigned_user"].widget = CheckboxSelectMultiple()
+
+
+class EventUpdateFormUser(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = [ 'session_duration','number_of_attendees','link']
 

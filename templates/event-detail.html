@@ -84,7 +84,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Signup for the event</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to signup?<</h5>
         <button
           type="button"
           class="btn-close"
@@ -95,9 +95,9 @@
       <div class="modal-body"></div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-          Close
+          No
         </button>
-        <a class="btn btn-danger" href="{% url 'signup-event' id=data.id %}">Signup for the event</a>
+        <a class="btn btn-danger" href="{% url 'signup-event' id=data.id %}">Yes</a>
       </div>
     </div>
   </div>
@@ -195,7 +195,7 @@
           <div><strong>Institution City:</strong> {{data.institution_name.college_city}}</div>
         </div>
       </li>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
+      {% comment %} <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
           <div><strong>Subject Matter Expert (SME) Name:</strong> {{data.sme.sme_name}}</div>
         </div>
@@ -209,7 +209,7 @@
         <div class="ms-2 me-auto">
           <div><strong>SME Manager Notes ID:</strong> {{data.sme_details.sme_manager_notes_id}}</div>
         </div>
-      </li>
+      </li> {% endcomment %}
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
           <div><strong>Link of Academic Initiative:</strong> {{data.link}}</div>
@@ -287,7 +287,11 @@
       </button>
     </div>
     <div class="col mb-3">
-        <a class="btn btn-success btn-block" href="{% url 'event-update' event_id=data.id %}">Update event</a>
+    {% if request.user.is_superuser %}
+            <a class="btn btn-success btn-block" href="{% url 'event-update' event_id=data.id %}">Update event</a>
+    {% else %}
+            <a class="btn btn-success btn-block" href="{% url 'event-update-user' event_id=data.id %}">Update event</a>
+    {% endif %}
     </div>
   {% endif %}
   {% if user.is_superuser %}

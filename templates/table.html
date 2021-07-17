@@ -2,7 +2,7 @@
 
 {% block content %}
 
-
+{% if not request.user.is_superuser %}
 <div class="card mt-1">
     <div class="card-body table-responsive ">
     <h4 class="card-title">Assigned Events</h4>
@@ -37,6 +37,7 @@
             </table>
     </div>
 </div>
+{% endif %}
 
 
 <div class="card mt-1">

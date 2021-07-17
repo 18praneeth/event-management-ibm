@@ -8,6 +8,7 @@ urlpatterns = [
     path('detail/<int:event_id>', event_detail, name='event-detail'),
     path('detail/event-delete/<int:event_id>', event_delete, name='event-delete'),
     path('detail/event-update/<int:event_id>', event_update, name='event-update'),
+    path('detail/event-update-user/<int:event_id>', event_update_user, name='event-update-user'),
     path('college/',create_college,name='college-create'),
     path('create-event', create_event, name='create-event'),
     path('college-details',college_details,name='college-details'),

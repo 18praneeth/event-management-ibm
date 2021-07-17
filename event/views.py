@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Event, CollegeName, Smeprofile
-from .forms import CollegeForm, CommentForm, EventUpdateForm, EventCreateForm, EventAssignForm, SMEForm
+from .forms import CollegeForm, CommentForm, EventUpdateForm, EventCreateForm, EventAssignForm, EventUpdateFormUser, SMEForm
 from django.contrib.auth.decorators import login_required
 from dateutil import parser
 from django.contrib import messages
@@ -134,6 +134,25 @@ def event_update(request, event_id):
 
     if request.POST:
         e_form = EventUpdateForm(request.POST, instance=event)
+        if e_form.is_valid():
+            e_form.save()
+            messages.success(request,'The event is updated')
+            return redirect('event-detail', event_id=event_id)
+    
+    context = {
+        'form': e_form,
+        'button_text': 'Update Event'
+    }
+    return render(request, 'event-edit.html', context)
+
+
+@login_required
+def event_update_user(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    e_form = EventUpdateFormUser(instance=event)
+
+    if request.POST:
+        e_form = EventUpdateFormUser(request.POST, instance=event)
         if e_form.is_valid():
             e_form.save()
             messages.success(request,'The event is updated')

@@ -66,17 +66,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script src="{% static 'js/toast.min.js' %}"></script>
-    <!--<script>
-      {% if messages %}
-      {% for message in messages %}
-        $.toast({
-          content: '{{ message }}',
-          type: '{{message.tags}}',
-          delay: 10000
-        });
-      {% endfor %}
-      {% endif %}
-    </script>-->
     <script>
       $(function () {
         $("#id_date").datepicker({
@@ -96,6 +85,14 @@
       })
      $(function () {
           $("#id_end").datepicker({
+              dateFormat: 'yy-mm-dd',
+              changeMonth: true,
+              changeYear: true,
+              yearRange: "-10:+10",
+          }).attr("autocomplete", "off");
+      })
+      $(function () {
+          $("#id_signup_by").datepicker({
               dateFormat: 'yy-mm-dd',
               changeMonth: true,
               changeYear: true,
