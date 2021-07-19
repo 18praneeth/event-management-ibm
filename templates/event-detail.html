@@ -84,7 +84,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to signup?<</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to signup?</h5>
         <button
           type="button"
           class="btn-close"
@@ -112,6 +112,10 @@
   data-mdb-target="#SignupeventModal">
   Signup for this event
 </button>
+{% elif request.user in data.assigned_user.all %}
+<span class="badge rounded-pill bg-success">This Event is assigned for you.</span>
+{% elif request.user in data.accepted_users.all %}
+  <span class="badge rounded-pill bg-secondary">You have already signed up for this event.</span>
 {% endif %}
 
 <!-- Button trigger modal -->
@@ -258,7 +262,7 @@
 <div class="row">
 
   {% if user.is_superuser %}
-    <div class="col mb-3">
+    <div class="col m-3">
       {% if data.publish %}
         <form method="POST">
             {% csrf_token %}
@@ -281,21 +285,47 @@
     </div>
   {% endif %}
   {% if user.is_superuser or request.user in data.assigned_user.all %}
-    <div class="col mb-3">
+    <div class="col m-3">
       <button type="button" class="btn btn-primary btn-block" data-mdb-toggle="modal" data-mdb-target="#commentModal">
         Add a comment
       </button>
     </div>
-    <div class="col mb-3">
+    <div class="col m-3">
     {% if request.user.is_superuser %}
             <a class="btn btn-success btn-block" href="{% url 'event-update' event_id=data.id %}">Update event</a>
     {% else %}
             <a class="btn btn-success btn-block" href="{% url 'event-update-user' event_id=data.id %}">Update event</a>
     {% endif %}
     </div>
+    {% if not request.user.is_superuser %}
+    <div class="col m-3">
+
+      {% if data.get_status %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="hidden_option_mark" value="0">
+            <button type="submit"
+                    class="btn btn-info btn-block">
+                      Unmark as Complete
+            </button>
+        </form>
+        {% else %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="hidden_option_mark" value="1">
+            <button type="submit"
+                    class="btn btn-info btn-block">
+                      Mark as Complete
+            </button>
+        </form>
+      {% endif %}
+    
+    </div>
+    {% endif %}
+
   {% endif %}
   {% if user.is_superuser %}
-      <div class="col mb-3">
+      <div class="col m-3">
         <button type="button" class="btn btn-danger btn-block" data-mdb-toggle="modal" data-mdb-target="#DeleteModal">Delete event</button>
       </div>
   {% endif %}

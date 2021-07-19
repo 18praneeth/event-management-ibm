@@ -56,6 +56,9 @@ class Event(models.Model):
     def get_comments(self):
         return self.comments.all().order_by('-id')
 
+    def get_status(self):
+        return self.status == "Completed"
+
 
     def __str__(self):
         return f'{self.event_activity_type} - {self.date}'

@@ -78,16 +78,27 @@ def event_detail(request, event_id):
     c_form = CommentForm()
     if request.POST:
         val = request.POST.get('hidden_option')
+        mark = request.POST.get('hidden_option_mark')
+        if val:
+            if val == "1":
+                single_event.publish = True
+                single_event.save()
+                send_slack_message(single_event)
+                return redirect('event-detail', event_id=event_id)
+            elif val == "0":
+                single_event.publish = False
+                single_event.save()
+                return redirect('event-detail', event_id=event_id)
 
-        if val == "1":
-            single_event.publish = True
-            single_event.save()
-            send_slack_message(single_event)
-            return redirect('event-detail', event_id=event_id)
-        elif val == "0":
-            single_event.publish = False
-            single_event.save()
-            return redirect('event-detail', event_id=event_id)
+        if mark:
+            if mark == "1":
+                single_event.status = "Completed"
+                single_event.save()
+                return redirect('event-detail', event_id=event_id)
+            elif mark == "0":
+                single_event.status = "Assigned"
+                single_event.save()
+                return redirect('event-detail', event_id=event_id)   
 
         c_form = CommentForm(request.POST)
         a_form = EventAssignForm(request.POST, instance=single_event)
