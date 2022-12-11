@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
+#import django_heroku
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -147,4 +147,4 @@ EMAIL_USE_TLS = True
 SLACK_TOKEN = 'xoxb-2189218964020-2183086032466-wmWA7z5ZLOdP68VdX66vmRTK'
 
 
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
